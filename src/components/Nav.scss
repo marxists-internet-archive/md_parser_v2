@@ -1,0 +1,15 @@
+.form-control {
+    &:focus {
+      background-color: #f8f9fa;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+    }
+    border: 0;
+    margin: 0;
+    padding:0;
+    font-size: 20px;
+    height: auto;
+    width: 97px;
+    background-color: #f8f9fa;
+  };
