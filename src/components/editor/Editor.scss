@@ -1,0 +1,21 @@
+@media (min-width: 0px) {
+  .editor_container {
+    max-width: 100%;
+  }
+}
+
+.editor {
+  width: 100%;
+  padding: 10px !important;
+  font-size: 16px;
+  border-radius: 3px;
+}
+  textarea {
+    box-sizing: border-box;
+    height: calc(100vh - 100px) !important;
+    border: 1px solid grey !important;
+    // &:focus {
+    //   border: 1px solid grey !important;
+    // }
+  }
+
