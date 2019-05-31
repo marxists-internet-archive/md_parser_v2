@@ -2,7 +2,8 @@ import data from "../_static_data/content";
 
 const initState = {
   content: data.text,
-  selectionStart: 0
+  selectionStart: 0,
+  selectionEnd: 0
 };
 
 const editorReducer = (state = initState, action) => {
@@ -11,7 +12,15 @@ const editorReducer = (state = initState, action) => {
       return {
         ...state,
         content: action.payload.content,
-        selectionStart: action.payload.selectionStart
+        content: action.payload.contentRendered,
+        selectionStart: action.payload.selectionStart,
+        selectionEnd: action.payload.selectionEnd
+      };
+    case "UPDATE_SELECTION":
+      return {
+        ...state,
+        selectionStart: action.payload.selectionStart,
+        selectionEnd: action.payload.selectionEnd
       };
     default:
       break;

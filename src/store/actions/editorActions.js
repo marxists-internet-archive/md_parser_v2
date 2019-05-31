@@ -4,3 +4,10 @@ export const updateStore = state => {
     payload: state
   };
 };
+
+export const updateSelection = state => {
+  return {
+    type: "UPDATE_SELECTION",
+    payload: state
+  };
+};
