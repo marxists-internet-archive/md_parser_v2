@@ -11,3 +11,10 @@ export const updateSelection = state => {
     payload: state
   };
 };
+
+export const updateScroll = state => {
+  return {
+    type: "UPDATE_SCROLL",
+    payload: state
+  };
+};

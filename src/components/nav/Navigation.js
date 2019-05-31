@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import NavTitle from "./NavTitle";
 import { LinkContainer } from "react-router-bootstrap";
+import { connect } from "react-redux";
 
 class Navigation extends Component {
   constructor(props) {
@@ -43,9 +44,9 @@ class Navigation extends Component {
 
   render() {
     const title =
-      this.state.projectTitle.length > 12
-        ? `${this.state.projectTitle.substring(0, 12)}...`
-        : this.state.projectTitle;
+      this.props.projectTitle.length > 12
+        ? `${this.props.projectTitle.substring(0, 12)}...`
+        : this.props.projectTitle;
     return (
       <Navbar className="bg-light justify-content-between mt-2">
         <Navbar.Brand className="projectTitle" onClick={this.onClick}>
@@ -67,4 +68,10 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => {
+  return {
+    projectTitle: state.nav.projectTitle
+  }
+}
+
+export default connect(mapStateToProps)(Navigation);

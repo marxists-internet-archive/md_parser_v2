@@ -7,7 +7,7 @@ class Preview extends Component {
     return (
       <Container>
         <br />
-        <p>{this.props.content}</p>
+        <div dangerouslySetInnerHTML={{ __html: this.props.contentRendered }}></div>
       </Container>
     );
   }
@@ -15,7 +15,7 @@ class Preview extends Component {
 
 const mapStateToProps = state => {
   return {
-    content: state.editor.content
+    contentRendered: state.editor.contentRendered
   };
 };
 

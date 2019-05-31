@@ -2,8 +2,10 @@ import data from "../_static_data/content";
 
 const initState = {
   content: data.text,
+  contentRendered: '',
   selectionStart: 0,
-  selectionEnd: 0
+  selectionEnd: 0,
+  scrollPos: 0
 };
 
 const editorReducer = (state = initState, action) => {
@@ -12,7 +14,7 @@ const editorReducer = (state = initState, action) => {
       return {
         ...state,
         content: action.payload.content,
-        content: action.payload.contentRendered,
+        contentRendered: action.payload.contentRendered,
         selectionStart: action.payload.selectionStart,
         selectionEnd: action.payload.selectionEnd
       };
@@ -21,6 +23,11 @@ const editorReducer = (state = initState, action) => {
         ...state,
         selectionStart: action.payload.selectionStart,
         selectionEnd: action.payload.selectionEnd
+      };
+    case "UPDATE_SCROLL":
+      return {
+        ...state,
+        scrollPos: action.payload.scrollPos
       };
     default:
       break;
