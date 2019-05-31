@@ -8,30 +8,8 @@ import { updateStore } from "../../store/actions/navActions";
 class Navigation extends Component {
   onClick = () => {
     this.props.updateStore({
-      projectTitle: (
-        <NavTitle
-          onEnter={this.onEnter}
-          onOutsideClick={this.onOutsideClick}
-          projectTitle={this.props.projectTitle}
-        />
-      )
+      projectTitle: <NavTitle projectTitle={this.props.projectTitle} />
     });
-  };
-
-  /** Will be passed to NavTitle component */
-  onOutsideClick = changedTitle => {
-    this.props.updateStore({
-      projectTitle: changedTitle ? changedTitle : "Untitled..."
-    });
-  };
-
-  /** Will be passed to NavTitle component */
-  onEnter = (e, changedTitle) => {
-    if (e.key === "Enter") {
-      this.props.updateStore({
-        projectTitle: changedTitle ? changedTitle : "Untitled..."
-      });
-    }
   };
 
   render() {

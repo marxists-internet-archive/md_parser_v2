@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { FormControl } from "react-bootstrap";
 import OutsideClickHandler from "react-outside-click-handler";
+import { connect } from "react-redux";
+import { updateStore } from "../../store/actions/navActions";
 
 /**
- * delegates state to onOutsideClick method,
+ * delegates local state to onOutsideClick method,
  * which subsequently maps the state to redux-property
- * destructing this component with a plain title.
+ * destructing this component and replacing it with a plain title.
+ *
+ * Important, props.projectTitle to be passet NOT from the store
+ * but manualy to the component. If not, you are passing an object to an object....
  */
 class NavTitle extends Component {
   constructor(props) {
@@ -26,21 +31,46 @@ class NavTitle extends Component {
     });
   };
 
+  onOutsideClick = () => {
+    const title = this.state.projectTitle;
+    this.props.updateStore({
+      projectTitle: title ? title : "Untitled..."
+    });
+  };
+
+  onEnter = e => {
+    const title = this.state.projectTitle;
+    if (e.key === "Enter") {
+      this.props.updateStore({
+        projectTitle: title ? title : "Untitled..."
+      });
+    }
+  };
+
   render() {
-    const { onOutsideClick, onEnter } = this.props;
     return (
-      <OutsideClickHandler
-        onOutsideClick={() => onOutsideClick(this.state.projectTitle)}
-      >
+      <OutsideClickHandler onOutsideClick={this.onOutsideClick}>
         <FormControl
           ref={this.titleForm}
           id="projectTitle"
           onChange={this.onChange}
-          onKeyPress={e => onEnter(e, this.state.projectTitle)}
+          onKeyPress={this.onEnter}
           value={this.state.projectTitle}
         />
       </OutsideClickHandler>
     );
   }
 }
-export default NavTitle;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateStore: state => {
+      dispatch(updateStore(state));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(NavTitle);
