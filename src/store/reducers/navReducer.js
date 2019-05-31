@@ -4,10 +4,10 @@ const initState = {
 
 const navReducer = (state = initState, action) => {
   switch (action.type) {
-    case "UPDATE_STORE":
+    case "UPDATE_NAV":
       return {
         ...state,
-        content: action.payload.projectTitle
+        projectTitle: action.payload.projectTitle
       };
     default:
       break;

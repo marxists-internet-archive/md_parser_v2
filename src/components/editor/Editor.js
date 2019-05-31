@@ -19,8 +19,6 @@ const md = require("markdown-it")({
 const Typograf = require("typograf");
 const tp = new Typograf({ locale: ["ru", "en-US"] });
 
-
-
 class Editor extends Component {
   constructor(props) {
     super(props);
@@ -35,33 +33,29 @@ class Editor extends Component {
     );
     this.textArea.current.scrollTop = this.props.scrollPos;
     //prerender state
-    this.onChange()
-
+    this.onChange();
   }
-
 
   onChange = () => {
     const rendered = md.render(tp.execute(this.textArea.current.value));
-        this.props.updateStore({
-          content: this.textArea.current.value,
-          contentRendered: rendered,
-          selectionStart: this.textArea.current.selectionStart,
-          selectionEnd: this.textArea.current.selectionEnd
-        });
+    this.props.updateStore({
+      content: this.textArea.current.value,
+      contentRendered: rendered,
+      selectionStart: this.textArea.current.selectionStart,
+      selectionEnd: this.textArea.current.selectionEnd
+    });
   };
 
   onClick = () => {
-        this.props.updateSelection({
-          selectionStart: this.textArea.current.selectionStart,
-          selectionEnd: this.textArea.current.selectionEnd
-        });
+    this.props.updateSelection({
+      selectionStart: this.textArea.current.selectionStart,
+      selectionEnd: this.textArea.current.selectionEnd
+    });
   };
 
   onScroll = () => {
-    this.props.updateScroll({ scrollPos: this.textArea.current.scrollTop})
-  }
-
-
+    this.props.updateScroll({ scrollPos: this.textArea.current.scrollTop });
+  };
 
   render() {
     return (

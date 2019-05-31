@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { FormControl } from "react-bootstrap";
 import OutsideClickHandler from "react-outside-click-handler";
 
+/**
+ * delegates state to onOutsideClick method,
+ * which subsequently maps the state to redux-property
+ * destructing this component with a plain title.
+ */
 class NavTitle extends Component {
   constructor(props) {
     super(props);

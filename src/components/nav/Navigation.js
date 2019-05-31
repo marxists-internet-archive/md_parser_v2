@@ -4,23 +4,15 @@ import { Navbar, Nav } from "react-bootstrap";
 import NavTitle from "./NavTitle";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
-
+import { updateStore } from "../../store/actions/navActions";
 class Navigation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: false,
-      projectTitle: "ProjectTitle"
-    };
-  }
-
   onClick = () => {
-    this.setState({
+    this.props.updateStore({
       projectTitle: (
         <NavTitle
           onEnter={this.onEnter}
           onOutsideClick={this.onOutsideClick}
-          projectTitle={this.state.projectTitle}
+          projectTitle={this.props.projectTitle}
         />
       )
     });
@@ -28,7 +20,7 @@ class Navigation extends Component {
 
   /** Will be passed to NavTitle component */
   onOutsideClick = changedTitle => {
-    this.setState({
+    this.props.updateStore({
       projectTitle: changedTitle ? changedTitle : "Untitled..."
     });
   };
@@ -36,7 +28,7 @@ class Navigation extends Component {
   /** Will be passed to NavTitle component */
   onEnter = (e, changedTitle) => {
     if (e.key === "Enter") {
-      this.setState({
+      this.props.updateStore({
         projectTitle: changedTitle ? changedTitle : "Untitled..."
       });
     }
@@ -71,7 +63,18 @@ class Navigation extends Component {
 const mapStateToProps = state => {
   return {
     projectTitle: state.nav.projectTitle
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateStore: state => {
+      dispatch(updateStore(state));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navigation);
