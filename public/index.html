@@ -19,6 +19,13 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+    <script src="./icons_css/grunticon.loader.js"></script>
+    <script>
+    const path = "./icons_css/"
+    grunticon([path + "icons.data.svg.css", path + "icons.data.png.css", path + "icons.fallback.css"], grunticon.svgLoadedCallback);
+    </script>
+
     <title>MdParserV2</title>
   </head>
   <body>

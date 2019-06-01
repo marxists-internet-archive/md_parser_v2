@@ -1,6 +1,6 @@
 import "./Editor.scss";
 import React, { Component } from "react";
-import { Form, Container, Row, Col } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
   updateStore,
@@ -19,10 +19,16 @@ const md = require("markdown-it")({
 const Typograf = require("typograf");
 const tp = new Typograf({ locale: ["ru", "en-US"] });
 
+const WAIT_INTERVAL = 1000;
+
 class Editor extends Component {
   constructor(props) {
     super(props);
     this.textArea = React.createRef();
+    this.willUnmount = false;
+    this.state = {
+      content: this.props.content
+    };
   }
 
   componentDidMount() {
@@ -34,16 +40,32 @@ class Editor extends Component {
     this.textArea.current.scrollTop = this.props.scrollPos;
     //prerender state
     this.onChange();
+    this.timer = null;
+  }
+
+  componentWillUnmount() {
+    this.willUnmount = true;
   }
 
   onChange = () => {
-    const rendered = md.render(tp.execute(this.textArea.current.value));
-    this.props.updateStore({
-      content: this.textArea.current.value,
-      contentRendered: rendered,
+    this.setState({
+      content: this.textArea.current.value
+    });
+    this.props.updateSelection({
       selectionStart: this.textArea.current.selectionStart,
       selectionEnd: this.textArea.current.selectionEnd
     });
+
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      if (!this.willUnmount) {
+        const rendered = md.render(tp.execute(this.textArea.current.value));
+        this.props.updateStore({
+          content: this.state.content,
+          contentRendered: rendered
+        });
+      }
+    }, WAIT_INTERVAL);
   };
 
   onClick = () => {
@@ -59,28 +81,21 @@ class Editor extends Component {
 
   render() {
     return (
-      <Container className="editor_container">
-        <br />
-        <Row>
-          <Col>
-            <Form>
-              <Form.Group>
-                <Form.Control
-                  id="content"
-                  className="editor"
-                  ref={this.textArea}
-                  as="textarea"
-                  rows="10"
-                  value={this.props.content}
-                  onChange={this.onChange}
-                  onClick={this.onClick}
-                  onScroll={this.onScroll}
-                />
-              </Form.Group>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+      <Form>
+        <Form.Group>
+          <Form.Control
+            id="content"
+            className="editor"
+            ref={this.textArea}
+            as="textarea"
+            rows="10"
+            value={this.state.content}
+            onChange={this.onChange}
+            onClick={this.onClick}
+            onScroll={this.onScroll}
+          />
+        </Form.Group>
+      </Form>
     );
   }
 }

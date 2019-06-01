@@ -5,10 +5,9 @@ import { connect } from "react-redux";
 class Preview extends Component {
   render() {
     return (
-      <Container>
-        <br />
+      <div>
         <div dangerouslySetInnerHTML={{ __html: this.props.contentRendered }} />
-      </Container>
+      </div>
     );
   }
 }

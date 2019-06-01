@@ -1,20 +1,28 @@
-.form-control {
-    &:focus {
-      background-color: #f8f9fa;
-      box-shadow: none;
-      margin: 0;
-      padding: 0;
-    }
-    border: 0;
-    margin: 0;
-    padding:0;
-    font-size: 20px;
-    height: auto;
-    width: 110px;
-    background-color: #f8f9fa;
-  };
+.navbar {
+  margin-top: 0px !important;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 5px 0px rgba(122, 122, 122, 1);
+}
+
 .projectTitle {
-  width:110px
+  width: 110px;
+}
+
+/* onClick converted Project Title */
+.form-control {
+  &:focus {
+    background-color: #f8f9fa;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  height: auto;
+  width: 110px;
+  background-color: #f8f9fa;
 }
 
 .active {
@@ -30,6 +38,27 @@
   cursor: pointer;
 }
 
-.navbar {
-  margin-top: 0px !important;
+/* Toolbar */
+.editor-toolbar {
+  margin-bottom: -2px;
+  .active {
+    margin: 0px;
+    background-color: #6c757d !important;
+  }
+}
+
+.toolbar-btn {
+  outline: none;
+  border: none !important;
+  background-color: white !important;
+  box-shadow: none !important;
+  z-index: 0 !important;
+
+  &:hover {
+    z-index: 0 !important;
+  }
+  .focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
 }

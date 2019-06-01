@@ -4,3 +4,10 @@ export const updateStore = state => {
     payload: state
   };
 };
+
+export const updateEditorView = state => {
+  return {
+    type: "UPDATE_VIEW",
+    payload: state
+  };
+};

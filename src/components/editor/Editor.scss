@@ -2,6 +2,9 @@
   .editor_container {
     max-width: 100%;
   }
+  .editor_pane_container {
+    max-width: 100%;
+  }
 }
 
 .editor {
@@ -10,12 +13,20 @@
   font-size: 16px;
   border-radius: 3px;
 }
-  textarea {
-    box-sizing: border-box;
-    height: calc(100vh - 100px) !important;
-    border: 1px solid grey !important;
-    // &:focus {
-    //   border: 1px solid grey !important;
-    // }
-  }
+
+textarea  {
+  box-sizing: border-box;
+  height: calc(100vh - 80px) !important;
+  border: 1px solid grey !important;
+}
+
+.preview_editor {
+  padding-top: 10px;
+  height: calc(100vh - 80px) !important;
+  border-bottom: 1px solid grey !important;
+  border-top: 1px solid grey !important;
+  overflow: hidden;
+  overflow-y: scroll !important;
+}
+
 

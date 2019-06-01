@@ -1,5 +1,6 @@
 const initState = {
-  projectTitle: "NewProject"
+  projectTitle: "NewProject",
+  view: [2, 3]
 };
 
 const navReducer = (state = initState, action) => {
@@ -8,6 +9,12 @@ const navReducer = (state = initState, action) => {
       return {
         ...state,
         projectTitle: action.payload.projectTitle
+      };
+    case "UPDATE_VIEW":
+      console.log(action.payload.view);
+      return {
+        ...state,
+        view: action.payload.view
       };
     default:
       break;
