@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-
+/**
+ * Use HashRouter for static sited instead of BrowserRouter.
+ * https://cutt.ly/tu8NgH
+ */
+import { HashRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
@@ -13,9 +16,9 @@ const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.getElementById("root")
 );
