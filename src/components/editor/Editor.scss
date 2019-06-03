@@ -29,4 +29,9 @@ textarea  {
   overflow-y: scroll !important;
 }
 
+.hiddenImage {
+  height: calc(100vh - 80px) !important;
+  line-height: calc(100vh - 80px) !important;
+}
+
 

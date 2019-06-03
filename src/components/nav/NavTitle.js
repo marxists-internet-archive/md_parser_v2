@@ -51,6 +51,7 @@ class NavTitle extends Component {
     return (
       <OutsideClickHandler onOutsideClick={this.onOutsideClick}>
         <FormControl
+          className="projectTitleInput"
           ref={this.titleForm}
           id="projectTitle"
           onChange={this.onChange}

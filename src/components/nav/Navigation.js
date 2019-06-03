@@ -33,7 +33,7 @@ class Navigation extends Component {
           <LinkContainer to="/preview">
             <Nav.Item>Preview</Nav.Item>
           </LinkContainer>
-          <LinkContainer to="/home">
+          <LinkContainer to="/meta">
             <Nav.Item>Meta</Nav.Item>
           </LinkContainer>
           {editorToolbar}

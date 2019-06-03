@@ -1,0 +1,87 @@
+Directory : /Users/pawelsnatenkov/code/marxists_org/md_parser_v2
+Date : 2019-06-03 20:49:08
+Total : 43 files,  18413 codes, 96 comments, 204 blanks, all 18713 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          3 |     17,225 |          0 |          3 |     17,228 |
+| JavaScript |         25 |        971 |         67 |        121 |      1,159 |
+| SCSS       |          4 |         89 |          6 |         16 |        111 |
+| HTML       |          2 |         70 |         23 |         15 |        108 |
+| Markdown   |          2 |         42 |          0 |         34 |         76 |
+| CSS        |          3 |         12 |          0 |         15 |         27 |
+| XML        |          4 |          4 |          0 |          0 |          4 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------+------------+------------+------------+------------+------------+
+| path                                 | files      | code       | comment    | blank      | total      |
++--------------------------------------+------------+------------+------------+------------+------------+
+| .                                    |         43 |     18,413 |         96 |        204 |     18,713 |
+| src                                  |         26 |      1,035 |         69 |        132 |      1,236 |
+| src/components                       |         12 |        527 |         24 |         74 |        625 |
+| src/store                            |          9 |        347 |          0 |         24 |        371 |
+| src/components/nav                   |          4 |        236 |         17 |         28 |        281 |
+| src/components/editor                |          4 |        200 |          3 |         31 |        234 |
+| src/store/_static_data               |          2 |        198 |          0 |          3 |        201 |
+| src/store/reducers                   |          4 |        113 |          0 |         15 |        128 |
+| public                               |          7 |         98 |         24 |         32 |        154 |
+| src/components/meta                  |          3 |         72 |          4 |         11 |         87 |
+| public/icons_css                     |          5 |         63 |          1 |         28 |         92 |
+| src/store/actions                    |          3 |         36 |          0 |          6 |         42 |
+| src/components/preview               |          1 |         19 |          0 |          4 |         23 |
+| assets/icons                         |          4 |          4 |          0 |          0 |          4 |
+| assets                               |          4 |          4 |          0 |          0 |          4 |
++--------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------+------------+------------+------------+------------+------------+
+| filename                             | language   | code       | comment    | blank      | total      |
++--------------------------------------+------------+------------+------------+------------+------------+
+| README.md                            | Markdown   |         37 |          0 |         32 |         69 |
+| ToDo.md                              | Markdown   |          5 |          0 |          2 |          7 |
+| assets/icons/code.svg                | XML        |          1 |          0 |          0 |          1 |
+| assets/icons/contents.svg            | XML        |          1 |          0 |          0 |          1 |
+| assets/icons/preview.svg             | XML        |          1 |          0 |          0 |          1 |
+| assets/icons/split_view.svg          | XML        |          1 |          0 |          0 |          1 |
+| gruntfile.js                         | JavaScript |         23 |          1 |          3 |         27 |
+| package-lock.json                    | JSON       |     17,161 |          0 |          1 |     17,162 |
+| package.json                         | JSON       |         49 |          0 |          1 |         50 |
+| public/icons_css/grunticon.loader.js | JavaScript |          1 |          1 |          1 |          3 |
+| public/icons_css/icons.data.png.css  | CSS        |          4 |          0 |          5 |          9 |
+| public/icons_css/icons.data.svg.css  | CSS        |          4 |          0 |          5 |          9 |
+| public/icons_css/icons.fallback.css  | CSS        |          4 |          0 |          5 |          9 |
+| public/icons_css/preview.html        | HTML       |         50 |          0 |         12 |         62 |
+| public/index.html                    | HTML       |         20 |         23 |          3 |         46 |
+| public/manifest.json                 | JSON       |         15 |          0 |          1 |         16 |
+| settings.js                          | JavaScript |          1 |          2 |          1 |          4 |
+| src/App.js                           | JavaScript |         19 |          1 |          6 |         26 |
+| src/App.scss                         | SCSS       |          0 |          4 |          1 |          5 |
+| src/components/editor/Editor.js      | JavaScript |        114 |          3 |         15 |        132 |
+| src/components/editor/Editor.scss    | SCSS       |         31 |          0 |          7 |         38 |
+| src/components/editor/EditorPane.js  | JavaScript |         37 |          0 |          5 |         42 |
+| src/components/editor/Preview.js     | JavaScript |         18 |          0 |          4 |         22 |
+| src/components/meta/InputField.js    | JavaScript |         38 |          0 |          6 |         44 |
+| src/components/meta/Meta.scss        | SCSS       |          3 |          0 |          0 |          3 |
+| src/components/meta/MetaFields.js    | JavaScript |         31 |          4 |          5 |         40 |
+| src/components/nav/EditorToolbar.js  | JavaScript |         62 |          7 |          5 |         74 |
+| src/components/nav/Nav.scss          | SCSS       |         55 |          2 |          8 |         65 |
+| src/components/nav/NavTitle.js       | JavaScript |         61 |          8 |          9 |         78 |
+| src/components/nav/Navigation.js     | JavaScript |         58 |          0 |          6 |         64 |
+| src/components/preview/Preview.js    | JavaScript |         19 |          0 |          4 |         23 |
+| src/index.js                         | JavaScript |         18 |          3 |          6 |         27 |
+| src/notepad.js                       | JavaScript |         32 |          6 |          8 |         46 |
+| src/serviceWorker.js                 | JavaScript |         92 |         31 |         13 |        136 |
+| src/store/_static_data/content.js    | JavaScript |        197 |          0 |          2 |        199 |
+| src/store/_static_data/metadata.js   | JavaScript |          1 |          0 |          1 |          2 |
+| src/store/actions/editorActions.js   | JavaScript |         18 |          0 |          3 |         21 |
+| src/store/actions/metaActions.js     | JavaScript |          6 |          0 |          1 |          7 |
+| src/store/actions/navActions.js      | JavaScript |         12 |          0 |          2 |         14 |
+| src/store/reducers/editorReducer.js  | JavaScript |         35 |          0 |          4 |         39 |
+| src/store/reducers/metaReducer.js    | JavaScript |         45 |          0 |          5 |         50 |
+| src/store/reducers/navReducer.js     | JavaScript |         23 |          0 |          3 |         26 |
+| src/store/reducers/rootReducer.js    | JavaScript |         10 |          0 |          3 |         13 |
+| Total                                |            |     18,413 |         96 |        204 |     18,713 |
++--------------------------------------+------------+------------+------------+------------+------------+

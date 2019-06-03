@@ -39,13 +39,21 @@ class Editor extends Component {
     );
     this.textArea.current.scrollTop = this.props.scrollPos;
     //prerender state
-    this.onChange();
+    this.preRender();
     this.timer = null;
   }
 
   componentWillUnmount() {
     this.willUnmount = true;
   }
+
+  preRender = () => {
+    const rendered = md.render(tp.execute(this.textArea.current.value));
+    this.props.updateStore({
+      content: this.state.content,
+      contentRendered: rendered
+    });
+  };
 
   onChange = () => {
     this.setState({
@@ -100,6 +108,7 @@ class Editor extends Component {
   }
 }
 
+/** TODO: refactor editor props */
 const mapStateToProps = state => {
   return {
     content: state.editor.content,

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 
 class Preview extends Component {

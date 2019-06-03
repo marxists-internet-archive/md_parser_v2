@@ -11,12 +11,14 @@ import { Route } from "react-router-dom";
 import Navigation from "./components/nav/Navigation";
 import EditorPane from "./components/editor/EditorPane";
 import Preview from "./components/preview/Preview";
+import MetaFields from "./components/meta/MetaFields";
 
 const App = () => (
   <div>
     <Route path="/" component={Navigation} />
     <Route exact path="/editor" component={EditorPane} />
     <Route exact path="/preview" component={Preview} />
+    <Route exact path="/meta" component={MetaFields} />
   </div>
 );
 
