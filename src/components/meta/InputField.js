@@ -16,12 +16,12 @@ const InputField = ({ props, updateMeta }) => {
   };
 
   return (
-    <Form.Group className="w-100">
+    <Form.Group className="w-100 meta_form">
       <Form.Label>{fieldName}</Form.Label>
       <Form.Control
         required={isRequired}
         id={fieldLabel}
-        placeholder={fieldName}
+        // placeholder={fieldName}
         value={fieldValue}
         onChange={onChange}
       />

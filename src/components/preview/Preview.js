@@ -4,10 +4,6 @@ import { connect } from "react-redux";
 import { jsAnchorNavigation } from "../helpers";
 
 class Preview extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     jsAnchorNavigation("#preview");
   }

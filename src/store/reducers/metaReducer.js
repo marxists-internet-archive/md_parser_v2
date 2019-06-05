@@ -1,26 +1,47 @@
 const initState = {
   author: {
     fieldLabel: "author",
-    fieldName: "Автор",
+    fieldName: "Автор:*",
     fieldValue: "Макаренко Антон Семёнович",
     isRequired: "required"
   },
   title: {
     fieldLabel: "title",
-    fieldName: "Название",
-    fieldValue: "Методика организации воспитательного процесса",
+    fieldName: "Название:*",
+    fieldValue: "Методика организации воспитательного процесса:",
     isRequired: "required"
   },
   origin: {
     fieldLabel: "origin",
-    fieldName: "Источник",
+    fieldName: "Источник:*",
     fieldValue:
-      "А.С. Макаренко Педагогические сочинения в восьми томах. Т.1 стр.267-329"
+      "А.С. Макаренко Педагогические сочинения в восьми томах. Т.1 стр.267-329",
+    isRequired: "required"
   },
   source: {
     fieldLabel: "source",
-    fieldName: "Ссылка на источник",
+    fieldName: "Ссылка на источник:",
     fieldValue: "https://www.marxists.org/"
+  },
+  publication: {
+    fieldLabel: "publication",
+    fieldName: "Место [издание] первого опубликования:",
+    fieldValue: "в ведомственном издании небольшим тиражом"
+  },
+  keywords: {
+    fieldLabel: "keywords",
+    fieldName: "Ключевые слова (через запятую):",
+    fieldValue: "педагогика, организация, коллектив"
+  },
+  translation: {
+    fieldLabel: "translation",
+    fieldName: "Перевод [optional]",
+    fieldValue: ""
+  },
+  translationLink: {
+    fieldLabel: "translationLink",
+    fieldName: "Ссылка на перевод [optional]",
+    fieldValue: ""
   }
 };
 

@@ -1,3 +1,4 @@
+import "./Meta.scss";
 import React, { Component } from "react";
 import { Container, Col, Row, Form } from "react-bootstrap";
 import { connect } from "react-redux";
@@ -22,9 +23,10 @@ class MetaFields extends Component {
     return (
       <Container>
         <Row>
-          <Col className="col-md-6">
+          <Col className="col-md-6 meta_body">
             <Form>{this.generateInputFields(this.props.fields)}</Form>
           </Col>
+          {/** TODO: Implement Time Field */}
         </Row>
       </Container>
     );

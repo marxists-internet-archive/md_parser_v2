@@ -1,12 +1,11 @@
 /**
- * @param {string} scrollableElemId - standart id selector format
+ * @param {String} scrollableElemId - standart id selector format
  * for example jsAnchorNavigation('#preview') activates anchor navigation inside the #preview element.
  */
 export const jsAnchorNavigation = scrollableElemId => {
   const elements = document.querySelectorAll(
     `${scrollableElemId} a[href^='#']`
   );
-  const parentElem = document.querySelector(`${scrollableElemId}`);
 
   elements.forEach(elem => {
     console.log(elem.hash);
