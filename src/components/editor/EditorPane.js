@@ -17,7 +17,7 @@ class EditorPane extends Component {
           ) : null}
 
           {this.props.view.includes(3) ? (
-            <Col className="preview_editor d-none d-sm-none d-md-block">
+            <Col  id="preview" className="preview_editor d-none d-sm-none d-md-block">
               <Preview />
             </Col>
           ) : null}
