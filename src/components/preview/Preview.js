@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
+import { jsAnchorNavigation } from "../helpers";
 
 class Preview extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    jsAnchorNavigation("#preview");
+  }
+
   render() {
     return (
-      <Container>
+      <Container id="preview">
         <br />
         <div dangerouslySetInnerHTML={{ __html: this.props.contentRendered }} />
       </Container>

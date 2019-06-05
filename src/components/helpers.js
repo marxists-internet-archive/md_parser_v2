@@ -1,15 +1,26 @@
 /**
  * @param {string} scrollableElemId - standart id selector format
- * for example jsAnchorNavigation('#preview') activates anchor navigation inside the #preview element. 
+ * for example jsAnchorNavigation('#preview') activates anchor navigation inside the #preview element.
  */
-export const jsAnchorNavigation = (scrollableElemId) => {
-    const elements = document.querySelectorAll(`${scrollableElemId} a[href^='#']`);
-    elements.forEach(elem => {
-      elem.addEventListener("click", (event) => {
-        event.preventDefault();
-        const linkedElem = document.getElementById(elem.hash.substring(1, elem.hash.length));
-        /** TODO: replace scroll method */
-        linkedElem.scrollIntoView();
-      })
+export const jsAnchorNavigation = scrollableElemId => {
+  const elements = document.querySelectorAll(
+    `${scrollableElemId} a[href^='#']`
+  );
+  const parentElem = document.querySelector(`${scrollableElemId}`);
+
+  elements.forEach(elem => {
+    console.log(elem.hash);
+
+    elem.addEventListener("click", event => {
+      event.preventDefault();
+      const target = document.getElementById(
+        elem.hash.substring(1, elem.hash.length)
+      );
+      target.scrollIntoView({
+        behavior: "auto",
+        block: "nearest",
+        inline: "start"
+      });
     });
-}
+  });
+};
