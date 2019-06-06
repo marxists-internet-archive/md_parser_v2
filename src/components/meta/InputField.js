@@ -16,7 +16,7 @@ const InputField = ({ props, updateMeta }) => {
   };
 
   return (
-    <Form.Group className="w-100 meta_form">
+    <Form.Group>
       <Form.Label>{fieldName}</Form.Label>
       <Form.Control
         required={isRequired}

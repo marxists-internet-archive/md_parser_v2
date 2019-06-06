@@ -21,14 +21,13 @@ class MetaFields extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="meta_container">
         <Row>
-          <Col className="col-md-6 meta_body">
-            <Form>{this.generateInputFields(this.props.fields)}</Form>
+          <Col className="col-12 col-lg-6 meta_col">
+            <Form className="meta_form">{this.generateInputFields(this.props.fields)}</Form>
           </Col>
-          {/** TODO: Implement Time Field */}
-          <Col className="col-md-6 meta_body ">
-            <Form>{this.generateInputFields(this.props.fields)}</Form>
+          <Col className="col-12 col-lg-6 meta_col">
+            <Form className="meta_form">{this.generateInputFields(this.props.fields)}</Form>
           </Col>
         </Row>
       </Container>

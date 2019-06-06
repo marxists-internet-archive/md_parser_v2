@@ -11,7 +11,7 @@ class EditorPane extends Component {
       <Container className="editor_pane_container">
         <Row>
           {this.props.view.includes(2) ? (
-            <Col>
+            <Col> 
               <Editor />
             </Col>
           ) : null}
