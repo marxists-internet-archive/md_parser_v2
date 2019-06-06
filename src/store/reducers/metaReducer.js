@@ -42,6 +42,11 @@ const initState = {
     fieldLabel: "translationLink",
     fieldName: "Ссылка на перевод [optional]",
     fieldValue: ""
+  },
+  date: {
+    fieldLabel: "date",
+    fieldName: "datePublished",
+    fieldValue: "1936"
   }
 };
 

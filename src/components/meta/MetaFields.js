@@ -13,8 +13,12 @@ class MetaFields extends Component {
   generateInputFields = fields => {
     const mappedFields = [];
     let key = 0;
+    const excludedFields = ["date"];
     Object.entries(fields).forEach(field => {
-      mappedFields.push(<InputField key={++key} props={field[1]} />);
+      const excludedField = excludedFields.includes(field[1].fieldLabel)
+      if (!excludedField){
+        mappedFields.push(<InputField key={++key} props={field[1]} />);
+      }
     });
     return mappedFields;
   };
@@ -27,7 +31,8 @@ class MetaFields extends Component {
             <Form className="meta_form">{this.generateInputFields(this.props.fields)}</Form>
           </Col>
           <Col className="col-12 col-lg-6 meta_col">
-            <Form className="meta_form">{this.generateInputFields(this.props.fields)}</Form>
+
+            {/* <Form className="meta_form">{this.generateInputFields(this.props.fields)}</Form> */}
           </Col>
         </Row>
       </Container>
