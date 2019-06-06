@@ -27,6 +27,9 @@ class MetaFields extends Component {
             <Form>{this.generateInputFields(this.props.fields)}</Form>
           </Col>
           {/** TODO: Implement Time Field */}
+          <Col className="col-md-6 meta_body ">
+            <Form>{this.generateInputFields(this.props.fields)}</Form>
+          </Col>
         </Row>
       </Container>
     );
