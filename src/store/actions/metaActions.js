@@ -4,3 +4,10 @@ export const updateMeta = state => {
     payload: state
   };
 };
+
+export const updateDate = state => {
+  return {
+    type: "UPDATE_DATE",
+    payload: state
+  };
+};

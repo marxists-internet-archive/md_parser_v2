@@ -45,18 +45,16 @@ const initState = {
   },
   date: {
     fieldLabel: "date",
-    fieldName: "datePublished",
+    fieldName: "Дата первого опубликования (YYYY-MM-DD)",
     fieldValue: "1936"
-  }
+  },
+  dateResult: ""
 };
 
 const metaReducer = (state = initState, action) => {
   switch (action.type) {
     case "UPDATE_META":
-      console.log(state);
-
       const { fieldLabel, fieldName, fieldValue, isRequired } = action.payload;
-
       return {
         ...state,
         [fieldLabel]: {
@@ -65,6 +63,11 @@ const metaReducer = (state = initState, action) => {
           fieldValue,
           isRequired
         }
+      };
+    case "UPDATE_DATE":
+      return {
+        ...state,
+        dateResult: action.payload
       };
     default:
       break;
