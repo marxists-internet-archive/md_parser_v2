@@ -11,7 +11,6 @@ const navReducer = (state = initState, action) => {
         projectTitle: action.payload.projectTitle
       };
     case "UPDATE_VIEW":
-      console.log(action.payload.view);
       return {
         ...state,
         view: action.payload.view

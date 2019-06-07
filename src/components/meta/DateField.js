@@ -1,13 +1,18 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { connect } from "react-redux";
-import { Form } from "react-bootstrap";
+import { Form, Alert } from "react-bootstrap";
 import { updateDate, updateMeta } from "../../store/actions/metaActions";
 import moment from "moment";
 import "moment/locale/ru";
 
 const DateField = props => {
+  const [alertVariant, setAlertVariant] = useState("danger");
+  const [alertVisibility, setAlertVisibility] = useState("invisible");
+  const [alertResult, setAlertResult] = useState("")
+
+
   const { fieldLabel, fieldName, fieldValue, isRequired } = props.date;
-  const { dateResult } = props.dateResult;
+
 
   const onChange = e => {
     props.updateMeta({
@@ -33,11 +38,20 @@ const DateField = props => {
       result = ruMoment.format("MMMM YYYY");
     } else if (dateString.match(/^\d{4}$/)) {
       result = ruMoment.format("YYYY") + "-й";
+    } else if (dateString === ""){
+      setAlertVisibility("invisible");
     } else {
-      result =
-        '<p style="color:red; font-size:14px; margin-top: 5px;">Пожалуйста введите правильный формат числа!<br> Например 1917 или 1917-11 или 1917-11-07</p>';
+      setAlertResult("Пожалуйста введите правильный формат числа! Например 1917 или 1917-11 или 1917-11-07")
+      setAlertVisibility("visible");
+      setAlertVariant("danger");
     }
-    return result;
+    if (result !== ""){
+      setAlertResult(result);
+      setAlertVisibility("visible")
+      setAlertVariant("info")
+      return result;
+    }
+
   };
 
   return (
@@ -49,8 +63,10 @@ const DateField = props => {
         value={fieldValue}
         onChange={onChange}
       />
-      <div dangerouslySetInnerHTML={{ __html: dateResult }} />
-      <h1 />
+      <br />
+      <Alert className={alertVisibility} variant={alertVariant}>
+        {alertResult}
+      </Alert>
     </Form.Group>
   );
 };

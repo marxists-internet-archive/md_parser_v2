@@ -8,8 +8,6 @@ export const jsAnchorNavigation = scrollableElemId => {
   );
 
   elements.forEach(elem => {
-    console.log(elem.hash);
-
     elem.addEventListener("click", event => {
       event.preventDefault();
       const target = document.getElementById(
