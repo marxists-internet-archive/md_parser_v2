@@ -26,9 +26,6 @@ class Editor extends Component {
     super(props);
     this.textArea = React.createRef();
     this.willUnmount = false;
-    this.state = {
-      content: this.props.content
-    };
   }
 
   componentDidMount() {
@@ -38,6 +35,7 @@ class Editor extends Component {
       this.props.selectionEnd
     );
     this.textArea.current.scrollTop = this.props.scrollPos;
+    this.textArea.current.value = this.props.content;
     //prerender state
     this.preRender();
     this.timer = null;
@@ -50,7 +48,7 @@ class Editor extends Component {
   preRender = () => {
     const rendered = md.render(tp.execute(this.textArea.current.value));
     this.props.updateStore({
-      content: this.state.content,
+      content: this.textArea.current.value,
       contentRendered: rendered
     });
   };
@@ -97,7 +95,6 @@ class Editor extends Component {
             ref={this.textArea}
             as="textarea"
             rows="10"
-            value={this.state.content}
             onChange={this.onChange}
             onClick={this.onClick}
             onScroll={this.onScroll}
