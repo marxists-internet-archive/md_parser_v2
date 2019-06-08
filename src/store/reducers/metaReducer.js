@@ -12,6 +12,12 @@ const initState = {
     fieldValue: "Методика организации воспитательного процесса:",
     isRequired: "required"
   },
+  serverPath: {
+    fieldLabel: "serverPath",
+    fieldName: "Путь на сервере:* (.../russkij/archive/)",
+    fieldValue: "makarenko/works/1936/",
+    isRequired: "required"
+  },
   origin: {
     fieldLabel: "origin",
     fieldName: "Источник:*",
@@ -55,7 +61,7 @@ const initState = {
     fieldLabel: "type",
     fieldName: "Тип материала",
     fieldValue: "...",
-    types: ["...", "речь", "статья", "книга"]
+    types: ["...", "статья", "книга", "выступление"]
   }
 };
 

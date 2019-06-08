@@ -22,7 +22,7 @@ class DateField extends Component {
   }
 
   onChange = () => {
-    const { fieldLabel, fieldName, isRequired } = this.props.date;
+    const { fieldLabel, fieldName } = this.props.date;
 
     const currentValue = this.dateField.current.value;
     const readableDate = transformDate(currentValue, moment);
@@ -32,8 +32,7 @@ class DateField extends Component {
       fieldLabel,
       fieldName,
       fieldValue: currentValue,
-      dateResult: readableDate,
-      isRequired
+      dateResult: readableDate
     });
 
     if (!currentValue) {

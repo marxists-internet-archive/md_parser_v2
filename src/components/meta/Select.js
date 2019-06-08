@@ -11,7 +11,6 @@ class Select extends Component {
   onChange = e => {
     const { fieldLabel, fieldName, types } = this.props.type;
     const selected = e.target.value;
-    console.log(types);
 
     this.props.updateMeta({
       fieldLabel,
@@ -21,10 +20,10 @@ class Select extends Component {
     });
   };
   render() {
-    console.log(this.props.type);
     const { fieldLabel, fieldName, fieldValue, types } = this.props.type;
+    let counter = 0;
     const options = types.map(type => {
-      return <option>{type}</option>;
+      return <option key={++counter}>{type}</option>;
     });
     return (
       <Form.Group>

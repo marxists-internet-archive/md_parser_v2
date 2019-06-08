@@ -32,6 +32,12 @@
   margin: -1px 0px -1px 0px;
 }
 
+/* button rem 0.n for padding: tb, rl */
+// .dropdown-toggle {
+//   font-size: 10px !important;
+//   // margin-bottom: -1px;
+// }
+
 .nav-item {
   box-sizing: border-box;
   margin-right: 10px;
@@ -61,4 +67,17 @@
     box-shadow: none !important;
     outline: none !important;
   }
+}
+
+// #toolDropDown .dropdown .btn {  
+//     background-color: #0d304e;
+//       font-size: 10px !important;
+//       padding: 0.05rem, 0.5rem !important;
+// }
+
+
+
+.btn-sm {
+  font-size: 10px !important;
+  padding: 0.05rem, 0.5rem !important;
 }

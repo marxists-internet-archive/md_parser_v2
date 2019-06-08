@@ -37,8 +37,7 @@ export const jsAnchorNavigation = scrollableElemId => {
  */
 export const transformDate = (dateString, moment) => {
   moment.locale("ru");
-  const ruMoment = moment(dateString);
-
+  const ruMoment = moment(new Date(dateString));
   let result = "";
   if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
     result = ruMoment.format("LL");

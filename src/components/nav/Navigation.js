@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { updateStore } from "../../store/actions/navActions";
 import NavTitle from "./NavTitle";
 import EditorToolbar from "./EditorToolbar";
+import DropdownToolbar from "./dropdown/DropdownToolbar";
 
 class Navigation extends Component {
   onClick = () => {
@@ -21,8 +22,10 @@ class Navigation extends Component {
       this.props.projectTitle.length > 12
         ? `${this.props.projectTitle.substring(0, 12)}...`
         : this.props.projectTitle;
+
     const editorToolbar =
       this.props.location.pathname === "/editor" ? <EditorToolbar /> : null;
+
     return (
       <Navbar className="bg-light justify-content-between mt-2 navPanel">
         <div
@@ -45,6 +48,8 @@ class Navigation extends Component {
           <LinkContainer to="/meta">
             <Nav.Item>Meta</Nav.Item>
           </LinkContainer>
+          <DropdownToolbar />
+
           {editorToolbar}
         </Nav>
       </Navbar>
