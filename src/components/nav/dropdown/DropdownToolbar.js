@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ButtonToolbar, Dropdown, DropdownButton } from "react-bootstrap";
 import DownloadMD from "./DownloadMD";
+import Upload from "./Upload";
 
 export default class DropdownToolbar extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ export default class DropdownToolbar extends Component {
       >
         <DropdownButton variant="secondary" title="Инструменты">
           <DownloadMD />
+          <Upload />
           <Dropdown.Item eventKey="2">Скачать HTML</Dropdown.Item>
         </DropdownButton>
       </ButtonToolbar>
