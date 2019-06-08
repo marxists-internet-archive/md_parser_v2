@@ -9,9 +9,11 @@ import EditorToolbar from "./EditorToolbar";
 
 class Navigation extends Component {
   onClick = () => {
-    this.props.updateStore({
-      projectTitle: <NavTitle projectTitle={this.props.projectTitle} />
-    });
+    if (this.props.user) {
+      this.props.updateStore({
+        projectTitle: <NavTitle projectTitle={this.props.projectTitle} />
+      });
+    }
   };
 
   render() {
@@ -23,7 +25,12 @@ class Navigation extends Component {
       this.props.location.pathname === "/editor" ? <EditorToolbar /> : null;
     return (
       <Navbar className="bg-light justify-content-between mt-2 navPanel">
-        <Navbar.Brand className="projectTitle" onClick={this.onClick}>
+        <div className="icon-edit" style={{ width: "35px", height: "35px" }} />
+        <Navbar.Brand
+          style={{ marginLeft: "5px" }}
+          className="projectTitle"
+          onClick={this.onClick}
+        >
           {title}
         </Navbar.Brand>
         <Nav className="mr-auto">

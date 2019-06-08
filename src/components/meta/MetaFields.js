@@ -4,6 +4,7 @@ import { Container, Col, Row, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import InputField from "./InputField";
 import DateField from "./DateField";
+import { default as TypeMaterial } from "./Select";
 
 class MetaFields extends Component {
   /**
@@ -14,7 +15,7 @@ class MetaFields extends Component {
   generateInputFields = fields => {
     const mappedFields = [];
     let key = 0;
-    const excludedFields = ["date"];
+    const excludedFields = ["date", "type"];
     Object.entries(fields).forEach(field => {
       const excludedField = excludedFields.includes(field[1].fieldLabel);
       if (!excludedField) {
@@ -36,6 +37,7 @@ class MetaFields extends Component {
           <Col className="col-12 col-lg-6 meta_col">
             <Form className="meta_form">
               <DateField />
+              <TypeMaterial />
             </Form>
           </Col>
         </Row>

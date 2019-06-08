@@ -1,6 +1,10 @@
+.icon-calligraphy { background-image: url('png/calligraphy.png'); background-repeat: no-repeat; }
+
 .icon-code { background-image: url('png/code.png'); background-repeat: no-repeat; }
 
 .icon-contents { background-image: url('png/contents.png'); background-repeat: no-repeat; }
+
+.icon-edit { background-image: url('png/edit.png'); background-repeat: no-repeat; }
 
 .icon-preview { background-image: url('png/preview.png'); background-repeat: no-repeat; }
 

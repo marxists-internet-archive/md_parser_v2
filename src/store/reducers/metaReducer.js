@@ -48,22 +48,35 @@ const initState = {
   date: {
     fieldLabel: "date",
     fieldName: "Дата первого опубликования (YYYY-MM-DD)",
-    fieldValue: "1936"
+    fieldValue: "1936",
+    dateResult: ""
   },
-  dateResult: ""
+  type: {
+    fieldLabel: "type",
+    fieldName: "Тип материала",
+    fieldValue: "...",
+    types: ["...", "речь", "статья", "книга"]
+  }
 };
 
 const metaReducer = (state = initState, action) => {
   switch (action.type) {
     case "UPDATE_META":
-      const { fieldLabel, fieldName, fieldValue, isRequired } = action.payload;
+      const {
+        fieldLabel,
+        fieldName,
+        fieldValue,
+        isRequired,
+        types
+      } = action.payload;
       return {
         ...state,
         [fieldLabel]: {
           fieldLabel,
           fieldName,
           fieldValue,
-          isRequired
+          isRequired,
+          types
         }
       };
     case "UPDATE_DATE":

@@ -21,3 +21,33 @@ export const jsAnchorNavigation = scrollableElemId => {
     });
   });
 };
+
+/**
+ * @returns {String} formatted Date || "ERROR"
+ * @param {String} - dateString
+ * @param {object} - moment Object
+ * @requires moment -
+ * [import moment from "moment";]
+ * [import "moment/locale/ru";]
+ *
+ * formatting possibilities:
+ * YYYY
+ * YYYY-MM
+ * YYYY-MM-DD
+ */
+export const transformDate = (dateString, moment) => {
+  moment.locale("ru");
+  const ruMoment = moment(dateString);
+
+  let result = "";
+  if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+    result = ruMoment.format("LL");
+  } else if (dateString.match(/^\d{4}-\d{2}$/)) {
+    result = ruMoment.format("MMMM YYYY");
+  } else if (dateString.match(/^\d{4}$/)) {
+    result = ruMoment.format("YYYY") + "-й";
+  } else {
+    result = "ERROR";
+  }
+  return result;
+};
