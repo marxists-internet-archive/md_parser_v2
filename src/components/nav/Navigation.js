@@ -25,10 +25,12 @@ class Navigation extends Component {
       this.props.location.pathname === "/editor" ? <EditorToolbar /> : null;
     return (
       <Navbar className="bg-light justify-content-between mt-2 navPanel">
-        <div className="icon-edit" style={{ width: "35px", height: "35px" }} />
+        <div
+          className="icon-edit"
+          style={{ width: "35px", height: "35px", marginRight: "10px" }}
+        />
         <Navbar.Brand
-          style={{ marginLeft: "5px" }}
-          className="projectTitle"
+          className="projectTitle d-none d-xs-none d-sm-block"
           onClick={this.onClick}
         >
           {title}
