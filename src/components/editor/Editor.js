@@ -29,13 +29,14 @@ class Editor extends Component {
   }
 
   componentDidMount() {
-    this.textArea.current.focus();
+    this.textArea.current.value = this.props.content;
+    this.textArea.current.scrollTop = this.props.scrollPos;
+
     this.textArea.current.setSelectionRange(
       this.props.selectionStart,
       this.props.selectionEnd
     );
-    this.textArea.current.scrollTop = this.props.scrollPos;
-    this.textArea.current.value = this.props.content;
+    this.textArea.current.focus();
     //prerender state
     this.preRender();
     this.timer = null;
