@@ -55,15 +55,40 @@ const initState = {
     fieldLabel: "date",
     fieldName: "Дата первого опубликования (YYYY-MM-DD)",
     fieldValue: "1936",
-    dateResult: ""
   },
   type: {
     fieldLabel: "type",
     fieldName: "Тип материала",
     fieldValue: "...",
     types: ["...", "статья", "книга", "выступление"]
+  },
+  /** component only - data only needod for diplay setting */
+  dateAlert: {
+    alertVisibility: "invisible",
+    alertVariant: "",
+    alertResult: ""
   }
 };
+
+export const dateAlertReducer = (state = initState.dateAlert, action) => {
+  switch (action.type) {
+    case "UPDATE_ALERT":
+      const {
+        alertVisibility,
+        alertVariant,
+        alertResult
+      } = action.payload
+      return {
+        ...state,
+        alertVisibility,
+        alertVariant,
+        alertResult
+      }
+    default:
+      break;
+  }
+  return state;
+}
 
 const metaReducer = (state = initState, action) => {
   switch (action.type) {
@@ -84,11 +109,6 @@ const metaReducer = (state = initState, action) => {
           isRequired,
           types
         }
-      };
-    case "UPDATE_DATE":
-      return {
-        ...state,
-        dateResult: action.payload
       };
     default:
       break;

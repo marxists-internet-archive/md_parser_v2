@@ -4,3 +4,11 @@ export const updateMeta = state => {
     payload: state
   };
 };
+
+export const updateAlert = state => {
+  return {
+    type: "UPDATE_ALERT",
+    payload: state
+  };
+};
+
