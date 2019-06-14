@@ -15,7 +15,7 @@ const DownloadMD = props => {
       }
     });
 
-    // concantenate json with content
+    // concatenate json with content
     jsonData = beautifyJS(JSON.stringify(jsonData));
     jsonData = "§§JSONBLOCK_START§§\n" + jsonData + "\n§§JSONBLOCK_END§§\n\n";
     jsonData += props.editor.content;

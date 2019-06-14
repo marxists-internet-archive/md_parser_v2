@@ -6,8 +6,9 @@ import { updateMeta } from "../../store/actions/metaActions";
 class Select extends Component {
   constructor(props) {
     super(props);
-    this.selectField = React.createRef;
+    this.selectField = React.createRef();
   }
+
   onChange = e => {
     const { fieldLabel, fieldName, types } = this.props.type;
     const selected = e.target.value;
@@ -19,8 +20,15 @@ class Select extends Component {
       types
     });
   };
+
+  componentDidUpdate() {
+    const { fieldValue } = this.props.type;
+    this.selectField.current.value = fieldValue;
+  }
+
   render() {
     const { fieldLabel, fieldName, fieldValue, types } = this.props.type;
+
     let counter = 0;
     const options = types.map(type => {
       return <option key={++counter}>{type}</option>;

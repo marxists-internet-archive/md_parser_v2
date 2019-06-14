@@ -12,6 +12,7 @@ class DateField extends Component {
     this.dateField = React.createRef();
     this.state = {
       alertVariant: "info",
+      currentValue: "",
       alertResult: "",
       alertVisibility: "invisible"
     };

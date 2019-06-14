@@ -68,7 +68,7 @@ const initState = {
 const metaReducer = (state = initState, action) => {
   switch (action.type) {
     case "UPDATE_META":
-      const {
+      let {
         fieldLabel,
         fieldName,
         fieldValue,
@@ -81,14 +81,28 @@ const metaReducer = (state = initState, action) => {
           fieldLabel,
           fieldName,
           fieldValue,
-          isRequired,
-          types
+          ...(isRequired && { isRequired }),
+          ...(types && { types })
         }
       };
-    case "UPDATE_DATE":
+    case "UPLOAD_META":
+      // console.log(action.payload.fieldLabel);
+      // fieldLabel = action.payload.fieldLabel;
+      // fieldValue = action.payload.fieldValue;
+      const payload = action.payload;
+      console.log({
+        [payload.fieldLabel]: {
+          ...state[payload.fieldLabel],
+          fieldValue: payload.fieldValue
+        }
+      });
+
       return {
         ...state,
-        dateResult: action.payload
+        [payload.fieldLabel]: {
+          ...state[payload.fieldLabel],
+          fieldValue: payload.fieldValue
+        }
       };
     default:
       break;

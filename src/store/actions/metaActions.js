@@ -4,3 +4,10 @@ export const updateMeta = state => {
     payload: state
   };
 };
+
+export const uploadMeta = state => {
+  return {
+    type: "UPLOAD_META",
+    payload: state
+  };
+};
