@@ -35,7 +35,7 @@ export const jsAnchorNavigation = scrollableElemId => {
  * YYYY-MM
  * YYYY-MM-DD
  */
-export const transformDate = (dateString, moment) => {
+const _transformDate = (dateString, moment) => {
   moment.locale("ru");
   const ruMoment = moment(new Date(dateString));
   let result = "";
@@ -50,3 +50,47 @@ export const transformDate = (dateString, moment) => {
   }
   return result;
 };
+
+/**
+ * @param {String} dateInput - date from input field
+ * @param {String} readableDateAlert - transformed date
+ * 
+ * @returns {Object} alert component settings as object
+ */
+const _prepareDateAlert = (dateInput, readableDateAlert) => {
+  let date = {}
+  const errorMessage = `Пожалуйста введите правильный формат числа! Например 1917 или 1917-11 или 1917-11-07`;
+
+  if (!dateInput) {
+    date = {
+      alertVisibility: "invisible",
+      alertVariant: "",
+      alertResult: ""
+    }
+  } else if (readableDateAlert === "ERROR") {
+    date = {
+      alertVisibility: "visible",
+      alertVariant: "danger",
+      alertResult: errorMessage
+    }
+  } else if (readableDateAlert !== "") {
+    date = {
+      alertVisibility: "visible",
+      alertVariant: "info",
+      alertResult: readableDateAlert
+    }
+  }
+  return date;
+}
+
+/**
+ * Maps date input to alert object,
+ * has to be passed to meta/dateAlertReducer
+ * @param {String} dateString 
+ * @param {Object} moment 
+ */
+export const renderDateAlert = (dateString, moment) => {
+  const readableDate = _transformDate(dateString, moment);
+  const dateAlertState = _prepareDateAlert(dateString, readableDate);
+  return dateAlertState
+}

@@ -11,3 +11,11 @@ export const uploadMeta = state => {
     payload: state
   };
 };
+
+export const updateAlert = state => {
+  return {
+    type: "UPDATE_ALERT",
+    payload: state
+  };
+};
+

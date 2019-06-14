@@ -51,6 +51,9 @@ class Upload extends Component {
   };
 
   handleUpload = () => {
+    /** TODO: update Alert on upload */
+    console.log("handleUpload");
+    
     const { textBlock, jsonBlock } = this.state;
     const metaObj = JSON.parse(jsonBlock);
     Object.entries(metaObj).forEach(metaField => {

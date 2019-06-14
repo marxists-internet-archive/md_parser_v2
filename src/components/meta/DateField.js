@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Alert } from "react-bootstrap";
-import { updateMeta } from "../../store/actions/metaActions";
-import { transformDate } from "../helpers";
+import { updateMeta, updateAlert } from "../../store/actions/metaActions";
+import {renderDateAlert } from "../helpers";
 import moment from "moment";
 import "moment/locale/ru";
 
@@ -24,41 +24,21 @@ class DateField extends Component {
 
   onChange = () => {
     const { fieldLabel, fieldName } = this.props.date;
-
     const currentValue = this.dateField.current.value;
-    const readableDate = transformDate(currentValue, moment);
-    const errorMessage = `Пожалуйста введите правильный формат числа! Например 1917 или 1917-11 или 1917-11-07`;
 
     this.props.updateMeta({
       fieldLabel,
       fieldName,
       fieldValue: currentValue,
-      dateResult: readableDate
+      dateResult: ""
     });
 
-    if (!currentValue) {
-      this.setState({
-        alertVisibility: "invisible",
-        alertResult: ""
-      });
-    } else if (readableDate === "ERROR") {
-      this.setState({
-        alertVisibility: "visible",
-        alertVariant: "danger",
-        alertResult: errorMessage
-      });
-    } else if (readableDate !== "") {
-      this.setState({
-        alertVisibility: "visible",
-        alertVariant: "info",
-        alertResult: readableDate
-      });
-    }
+    this.props.updateAlert(renderDateAlert(currentValue, moment));
   };
 
-  render() {
+  render() {            
     const { fieldLabel, fieldName, fieldValue, isRequired } = this.props.date;
-    const { alertVisibility, alertVariant, alertResult } = this.state;
+    const { alertVisibility, alertVariant, alertResult } = this.props.dateAlert;
     return (
       <Form.Group>
         <Form.Label>{fieldName}</Form.Label>
@@ -81,6 +61,9 @@ const mapDispatchToProps = dispatch => {
   return {
     updateMeta: state => {
       dispatch(updateMeta(state));
+    },
+    updateAlert: state => {
+      dispatch(updateAlert(state));
     }
   };
 };
@@ -88,6 +71,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     date: state.meta.date,
+    dateAlert: state.date,
     dateResult: state.meta.dateResult
   };
 };
