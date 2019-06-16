@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Alert } from "react-bootstrap";
 import { updateMeta, updateAlert } from "../../store/actions/metaActions";
-import {renderDateAlert } from "../helpers";
+import { renderDateAlert } from "../helpers";
 import moment from "moment";
 import "moment/locale/ru";
 
@@ -10,12 +10,6 @@ class DateField extends Component {
   constructor(props) {
     super(props);
     this.dateField = React.createRef();
-    this.state = {
-      alertVariant: "info",
-      currentValue: "",
-      alertResult: "",
-      alertVisibility: "invisible"
-    };
   }
 
   componentDidMount() {
@@ -29,14 +23,13 @@ class DateField extends Component {
     this.props.updateMeta({
       fieldLabel,
       fieldName,
-      fieldValue: currentValue,
-      dateResult: ""
+      fieldValue: currentValue
     });
 
     this.props.updateAlert(renderDateAlert(currentValue, moment));
   };
 
-  render() {            
+  render() {
     const { fieldLabel, fieldName, fieldValue, isRequired } = this.props.date;
     const { alertVisibility, alertVariant, alertResult } = this.props.dateAlert;
     return (

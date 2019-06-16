@@ -15,7 +15,6 @@ const addTodo = { type: "ADD_TODO", payload: "купить молоко" };
 const delTodo = { type: "DEL_LAST", payload: "" };
 
 function myReducer(state = initState, action) {
-  // console.log(state);
   switch (action.type) {
     case "ADD_TODO":
       return {

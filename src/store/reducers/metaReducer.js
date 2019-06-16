@@ -54,7 +54,7 @@ const initState = {
   date: {
     fieldLabel: "date",
     fieldName: "Дата первого опубликования (YYYY-MM-DD)",
-    fieldValue: "1936",
+    fieldValue: "1936"
   },
   type: {
     fieldLabel: "type",
@@ -73,25 +73,19 @@ const initState = {
 export const dateAlertReducer = (state = initState.dateAlert, action) => {
   switch (action.type) {
     case "UPDATE_ALERT":
-      const {
-        alertVisibility,
-        alertVariant,
-        alertResult
-      } = action.payload
+      const { alertVisibility, alertVariant, alertResult } = action.payload;
       return {
         ...state,
         alertVisibility,
         alertVariant,
         alertResult
-      }
+      };
 
     default:
       break;
   }
   return state;
-}
-
-
+};
 
 const metaReducer = (state = initState, action) => {
   switch (action.type) {
@@ -114,10 +108,6 @@ const metaReducer = (state = initState, action) => {
         }
       };
     case "UPLOAD_META":
-      console.log("state", state);
-      console.log("reducer", action.payload);
-      // fieldLabel = action.payload.fieldLabel;
-      // fieldValue = action.payload.fieldValue;
       const payload = action.payload;
       return {
         ...state,

@@ -26,7 +26,13 @@ export default class DropdownToolbar extends Component {
         <DropdownButton variant="secondary" title="Инструменты">
           <DownloadMD />
           <Upload />
-          <Dropdown.Item eventKey="2">Скачать HTML</Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => {
+              alert("Sorry, not implemented yet!");
+            }}
+          >
+            Скачать HTML
+          </Dropdown.Item>
         </DropdownButton>
       </ButtonToolbar>
     );

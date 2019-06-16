@@ -46,6 +46,19 @@ class Editor extends Component {
     this.willUnmount = true;
   }
 
+  componentDidUpdate() {
+    // set flag to true in upload component
+    if (this.props.update) {
+      this.textArea.current.value = this.props.content;
+      /** TODO: refactor editor reducer with meta schema */
+      this.props.updateStore({
+        content: this.props.content,
+        contentRendered: this.props.contentRendered,
+        update: false
+      });
+    }
+  }
+
   preRender = () => {
     const rendered = md.render(tp.execute(this.textArea.current.value));
     this.props.updateStore({
@@ -113,7 +126,8 @@ const mapStateToProps = state => {
     contentRendered: state.editor.contentRendered,
     selectionStart: state.editor.selectionStart,
     selectionEnd: state.editor.selectionEnd,
-    scrollPos: state.editor.scrollPos
+    scrollPos: state.editor.scrollPos,
+    update: state.editor.update
   };
 };
 

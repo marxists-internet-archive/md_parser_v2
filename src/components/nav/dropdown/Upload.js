@@ -2,9 +2,22 @@ import React, { Component } from "react";
 import { Dropdown, Button, Modal, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { updateStore } from "../../../store/actions/editorActions";
-import { uploadMeta } from "../../../store/actions/metaActions";
+import { uploadMeta, updateAlert } from "../../../store/actions/metaActions";
+import { renderDateAlert } from "../../helpers";
+import moment from "moment";
+import "moment/locale/ru";
 
-/** TODO: implement upload */
+/** TODO: change to import */
+const md = require("markdown-it")({
+  html: true,
+  breaks: true,
+  linkify: true,
+  typographer: true
+}).use(require("markdown-it-footnote"));
+
+const Typograf = require("typograf");
+const tp = new Typograf({ locale: ["ru", "en-US"] });
+
 /**
  * for Image upload see: https://medium.com/@650egor/react-30-day-challenge-day-2-image-upload-preview-2d534f8eaaa
  */
@@ -31,6 +44,9 @@ class Upload extends Component {
     this.setState({ show: true });
   };
 
+  /**
+   * shows preview in modal
+   */
   handleFileRead = () => {
     const result = this.fileReader.result;
     const jsonBlock = /(?<=§§JSONBLOCK_START§§)([\S\s]*?)(?=§§JSONBLOCK_END§§)/gim;
@@ -51,9 +67,6 @@ class Upload extends Component {
   };
 
   handleUpload = () => {
-    /** TODO: update Alert on upload */
-    console.log("handleUpload");
-    
     const { textBlock, jsonBlock } = this.state;
     const metaObj = JSON.parse(jsonBlock);
     Object.entries(metaObj).forEach(metaField => {
@@ -61,6 +74,14 @@ class Upload extends Component {
         fieldLabel: metaField[0],
         fieldValue: metaField[1]
       });
+    });
+    this.props.updateAlert(renderDateAlert(metaObj.date, moment));
+
+    const rendered = md.render(tp.execute(textBlock));
+    this.props.updateStore({
+      content: textBlock.trim(),
+      contentRendered: rendered,
+      update: true
     });
   };
 
@@ -133,6 +154,9 @@ const mapDispatchToProps = dispatch => {
     },
     uploadMeta: state => {
       dispatch(uploadMeta(state));
+    },
+    updateAlert: state => {
+      dispatch(updateAlert(state));
     }
   };
 };
