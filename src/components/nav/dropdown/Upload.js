@@ -110,7 +110,7 @@ class Upload extends Component {
 
     return (
       <div>
-        <Dropdown.Item onClick={this.handleShow}>Загрузить</Dropdown.Item>
+        <Dropdown.Item onClick={this.handleShow}>Загрузить MD</Dropdown.Item>
 
         <Modal show={show} onHide={this.handleClose}>
           <Modal.Header closeButton>
