@@ -67,6 +67,7 @@ class Upload extends Component {
   };
 
   handleUpload = () => {
+    const state = this.state;
     const { textBlock, jsonBlock } = this.state;
     const metaObj = JSON.parse(jsonBlock);
     Object.entries(metaObj).forEach(metaField => {
@@ -82,6 +83,11 @@ class Upload extends Component {
       content: textBlock.trim(),
       contentRendered: rendered,
       update: true
+    });
+
+    this.setState({
+      ...state,
+      show: false
     });
   };
 
