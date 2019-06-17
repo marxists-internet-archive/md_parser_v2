@@ -64,6 +64,7 @@ const initState = {
   },
   /** component only - data only needod for diplay setting */
   dateAlert: {
+    fieldLabel: "dateAlert",
     alertVisibility: "invisible",
     alertVariant: "",
     alertResult: ""

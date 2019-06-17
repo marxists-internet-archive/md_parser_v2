@@ -15,7 +15,7 @@ class MetaFields extends Component {
   generateInputFields = fields => {
     const mappedFields = [];
     let key = 0;
-    const excludedFields = ["date", "type"];
+    const excludedFields = ["date", "type", "dateAlert"];
     Object.entries(fields).forEach(field => {
       const excludedField = excludedFields.includes(field[1].fieldLabel);
       if (!excludedField) {
