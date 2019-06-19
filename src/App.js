@@ -1,4 +1,5 @@
 import "./App.scss";
+import "./Fonts.scss";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery";

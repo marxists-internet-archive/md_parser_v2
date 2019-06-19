@@ -9,7 +9,7 @@ const initState = {
   title: {
     fieldLabel: "title",
     fieldName: "Название:*",
-    fieldValue: "Методика организации воспитательного процесса:",
+    fieldValue: "Методика организации воспитательного процесса",
     isRequired: "required"
   },
   serverPath: {

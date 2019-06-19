@@ -1,3 +1,4 @@
+import "./Preview.scss"
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
@@ -9,8 +10,19 @@ class Preview extends Component {
   }
 
   render() {
+    console.log(this.props.meta);
+    const {author, title, origin, source} = this.props.meta;
+    
     return (
-      <Container id="preview">
+      <Container className="preview" id="preview">
+      <div className="meta">      
+        {author && <h2>{author.fieldValue}</h2>}
+        {title && <h3>{title.fieldValue}</h3>}
+        <div className="meta-box">
+            {origin && <h4><a href={source.fieldName}>{origin.fieldName} {origin.fieldValue}</a></h4>}
+        </div>
+
+      </div>
         <br />
         <div dangerouslySetInnerHTML={{ __html: this.props.contentRendered }} />
       </Container>
@@ -20,7 +32,9 @@ class Preview extends Component {
 
 const mapStateToProps = state => {
   return {
-    contentRendered: state.editor.contentRendered
+    contentRendered: state.editor.contentRendered,
+    meta: state.meta
+    
   };
 };
 
