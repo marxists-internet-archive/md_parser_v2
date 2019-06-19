@@ -76,7 +76,10 @@ class Upload extends Component {
         fieldValue: metaField[1]
       });
     });
-    this.props.updateAlert(renderDateAlert(metaObj.date, moment));
+
+    if(metaObj.date){
+      this.props.updateAlert(renderDateAlert(metaObj.date, moment));
+    }
 
     const rendered = md.render(tp.execute(textBlock));
     this.props.updateStore({
