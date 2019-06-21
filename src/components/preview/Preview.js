@@ -16,8 +16,6 @@ class Preview extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     const {
       author,
       title,
