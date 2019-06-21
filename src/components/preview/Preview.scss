@@ -1,8 +1,23 @@
 .preview {
   font-family: "Open Sans" !important;
-//   font-family: "Noto Serif" !important;
+  //   font-family: "Noto Serif" !important;
+
+  p {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+  }
 
   .meta {
+    margin-top: 1.5em;
+    padding: 1.5em;
+    padding-top: 0em;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 1);
+    box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 1);
+    border-radius: 0.3em;
+
     font-family: "Noto Serif";
 
     h2 {
@@ -15,16 +30,30 @@
     }
 
     h4 {
-        font-size: 1.3em;
+      font-size: 1.3em;
     }
 
     .meta-box {
-      margin-top: 1.5em;
-      padding: 1.5em;
-      -webkit-box-shadow: 0px 0px 5px 0px rgba(199,199,199,1);
-      -moz-box-shadow: 0px 0px 5px 0px rgba(199,199,199,1);
-      box-shadow: 0px 0px 5px 0px rgba(199,199,199,1);
-      border-radius: 0.3em;
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 1px dashed grey;
+      a {
+        color: rgb(95, 95, 95);
+        text-decoration: none;
+        transition: color 0.5s;
+        transition: border-bottom 0.3s;
+        border-bottom: 1px solid white;
+      }
+
+      a:hover {
+        color: black;
+        border-bottom: 1px solid black;
+      }
+
+      h4 {
+        margin-bottom: 0.8em;
+        line-height: 1.5em;
+      }
     }
   }
 
@@ -48,6 +77,52 @@
   .footnotes {
     li {
       border-left: 0.1em solid rgb(216, 0, 0);
+    }
+  }
+}
+
+@media (max-width: 415px) {
+  .preview {
+    h1 {
+      font-size: 1.4em;
+    }
+    h2 {
+      font-size: 1.3em;
+    }
+
+    h3 {
+      font-size: 1.2em;
+      color: brown;
+    }
+
+    h4 {
+      font-size: 1em;
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+    .meta {
+      padding-top: 1.5em;
+      h1 {
+        font-size: 1.4em;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+
+      h3 {
+        font-size: 1.2em;
+        color: brown;
+      }
+
+      h4 {
+        font-size: 1em;
+      }
+
+      h5 {
+        font-size: 1em;
+      }
     }
   }
 }

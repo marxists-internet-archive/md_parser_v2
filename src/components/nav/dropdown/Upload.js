@@ -49,15 +49,15 @@ class Upload extends Component {
    */
   handleFileRead = () => {
     const result = this.fileReader.result;
-    const jsonBlock = /(?<=§§JSONBLOCK_START§§)([\S\s]*?)(?=§§JSONBLOCK_END§§)/gim;
-    const textBlock = /(?<=§§JSONBLOCK_END§§)([\S\s]*?)*/gim;
+    /** TODO: replace regex, no lookbehind supported in Firefox */
+    const jsonBlock = /(?<=§§JSONBLOCK_START§§)([\S\s]*?)(?=§§JSONBLOCK_END§§)/;
+    const textBlock = /(?<=§§JSONBLOCK_END§§)([\S\s]*?)*/;
     const matchedJSON = result.match(jsonBlock)
       ? result.match(jsonBlock)[0]
       : "ERROR";
     const matchedText = result.match(textBlock)
       ? result.match(textBlock)[0]
       : "ERROR";
-
     const state = this.state;
     this.setState({
       ...state,
@@ -77,7 +77,7 @@ class Upload extends Component {
       });
     });
 
-    if(metaObj.date){
+    if (metaObj.date) {
       this.props.updateAlert(renderDateAlert(metaObj.date, moment));
     }
 

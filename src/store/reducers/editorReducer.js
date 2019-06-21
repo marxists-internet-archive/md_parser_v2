@@ -1,8 +1,9 @@
 import data from "../_static_data/content";
+import renderedPreview from "../_static_data/renderedPreview";
 
 const initState = {
   content: data.text,
-  contentRendered: "",
+  contentRendered: renderedPreview.rendered,
   selectionStart: 0,
   selectionEnd: 0,
   scrollPos: 0,

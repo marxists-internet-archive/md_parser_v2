@@ -59,7 +59,7 @@ const initState = {
   type: {
     fieldLabel: "type",
     fieldName: "Тип материала",
-    fieldValue: "...",
+    fieldValue: "статья",
     types: ["...", "статья", "книга", "выступление"]
   },
   /** component only - data only needod for diplay setting */
@@ -67,7 +67,7 @@ const initState = {
     fieldLabel: "dateAlert",
     alertVisibility: "invisible",
     alertVariant: "",
-    alertResult: ""
+    alertResult: "1936-й"
   }
 };
 
@@ -75,6 +75,7 @@ export const dateAlertReducer = (state = initState.dateAlert, action) => {
   switch (action.type) {
     case "UPDATE_ALERT":
       const { alertVisibility, alertVariant, alertResult } = action.payload;
+
       return {
         ...state,
         alertVisibility,

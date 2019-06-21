@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { jsAnchorNavigation } from "../helpers";
+import "../preview/Preview.scss";
 
 class Preview extends Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class Preview extends Component {
 
   render() {
     return (
-      <div>
+      <div className="preview">
         <div dangerouslySetInnerHTML={{ __html: this.props.contentRendered }} />
       </div>
     );
