@@ -59,7 +59,7 @@ class Preview extends Component {
                 </a>
               </h4>
             )}
-            {keywords && (
+            {keywords.fieldValue && (
               <h4>
                 <i>
                   {keywords.fieldValue.split(", ").map(elem => `#${elem} `)}

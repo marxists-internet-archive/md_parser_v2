@@ -8,7 +8,7 @@ import {
   updateScroll
 } from "../../store/actions/editorActions";
 
-/** TODO: change to import */
+/** TODO: refactor to import */
 const md = require("markdown-it")({
   html: true,
   breaks: true,

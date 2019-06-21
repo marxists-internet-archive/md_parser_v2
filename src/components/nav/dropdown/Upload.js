@@ -7,7 +7,7 @@ import { renderDateAlert } from "../../helpers";
 import moment from "moment";
 import "moment/locale/ru";
 
-/** TODO: change to import */
+/** TODO: refactor to import */
 const md = require("markdown-it")({
   html: true,
   breaks: true,
@@ -66,7 +66,18 @@ class Upload extends Component {
     });
   };
 
+  /**  сбросить глобальное состояние перед загрузкой */
+  dropState = () => {
+    Object.entries(this.props.meta).forEach(field => {
+      this.props.uploadMeta({
+        fieldLabel: field[0],
+        fieldValue: ""
+      });
+    });
+  };
+
   handleUpload = () => {
+    this.dropState();
     const state = this.state;
     const { textBlock, jsonBlock } = this.state;
     const metaObj = JSON.parse(jsonBlock);
@@ -100,6 +111,8 @@ class Upload extends Component {
   };
 
   render() {
+    console.log(this.props.meta);
+
     const { show, jsonBlock, textBlock } = this.state;
 
     const filePreview = jsonBlock && (
@@ -156,6 +169,12 @@ class Upload extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    meta: state.meta
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     updateStore: state => {
@@ -171,6 +190,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Upload);
