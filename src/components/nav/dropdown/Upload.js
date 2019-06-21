@@ -111,8 +111,6 @@ class Upload extends Component {
   };
 
   render() {
-    console.log(this.props.meta);
-
     const { show, jsonBlock, textBlock } = this.state;
 
     const filePreview = jsonBlock && (
