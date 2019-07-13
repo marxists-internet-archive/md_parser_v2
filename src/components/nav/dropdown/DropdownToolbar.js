@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ButtonToolbar, Dropdown, DropdownButton } from "react-bootstrap";
 import DownloadMD from "./DownloadMD";
+import DownloadHTML from "./DownloadHTML";
 import Upload from "./Upload";
 
 export default class DropdownToolbar extends Component {
@@ -26,15 +27,18 @@ export default class DropdownToolbar extends Component {
         <DropdownButton variant="secondary" title="Инструменты">
           <DownloadMD />
           <Upload />
-          <Dropdown.Item
-            onClick={() => {
-              alert("Sorry, not implemented yet!");
-            }}
-          >
-            Скачать HTML
-          </Dropdown.Item>
+          <DownloadHTML />
+
+
         </DropdownButton>
       </ButtonToolbar>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    metadata: state.meta,
+    editor: state.editor
+  };
+};

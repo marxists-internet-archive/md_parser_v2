@@ -59,8 +59,8 @@ const initState = {
   type: {
     fieldLabel: "type",
     fieldName: "Тип материала",
-    fieldValue: "статья",
-    types: ["...", "статья", "книга", "выступление"]
+    fieldValue: "article",
+    types: ["...", "article", "book", "speech"]
   },
   /** component only - data only needod for diplay setting */
   dateAlert: {
