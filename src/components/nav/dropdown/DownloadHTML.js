@@ -24,21 +24,36 @@ const DownloadHTML = props => {
     jsonData = beautifyJS(JSON.stringify(jsonData));
 
     // concatenate json with content
-    let html = '<!doctype html>\n<html>\n<head>\n';
-    html += '<title>' + props.metadata.author.fieldValue +' — '+ props.metadata.title.fieldValue +' </title>\n';
-    html += '<meta name="keywords" content="'+ props.metadata.keywords.fieldValue +'" />\n'
-    html += '<link rel="stylesheet" href="http://pm-pu.ru/marx/style_for_marxists.css">\n\n';
-    html += '<!-- metaJSON\n' + jsonData + '\nmetaJSON -->\n\n';
-    html += '</head>\n<body>\n';
-    html += '<div class="nav-links"><a href="https://marxists.org/">МИА</a>&#160;&#160;&gt;&#160;<a href="https://marxists.org/russkij/">Русский раздел</a>&#160;&#160;&gt;&#160;';
-    html += '<a href="https://marxists.org/russkij/archive/' + translitSurname +'/">'+ surnameAuthor +'</a></div>\n\n';
-    html += '<div class="content">\n<h1 class="title">' + props.metadata.title.fieldValue + '</h1>\n';
-    html += '<div class="author">'+ props.metadata.author.fieldValue +'</div>\n<hr />\n\n';
-    html += '<div class="meta">';
-    html += '<span class="meta-description"> Первая публикация: </span> <span class="meta-value"> ' +  props.metadata.date.fieldValue + '</span><br/>';
-    html += '<span class="meta-description"> Источник: </span> <span class="meta-value"> ' +  props.metadata.origin.fieldValue + '</span>';
-    html +=  '</div><hr/>\n\n' + props.editor.contentRendered + '</div>\n';
-    html += '</body>\n</html>'
+    let html = `<!doctype html>
+<html>
+<head>
+    <title> ${props.metadata.author.fieldValue} ${props.metadata.title.fieldValue}</title>
+    <meta name="keywords" content="${props.metadata.keywords.fieldValue}" />
+    <link rel="stylesheet" href="http://pm-pu.ru/marx/style_for_marxists.css">
+    <!-- metaJSON
+    ${jsonData}
+    metaJSON -->
+</head>
+<body>
+    <div class="nav-links">
+        <a href="https://marxists.org/">МИА</a>&#160;&#160;&gt;&#160;
+        <a href="https://marxists.org/russkij/">Русский раздел</a>&#160;&#160;&gt;&#160;
+        <a href="https://marxists.org/russkij/archive/${translitSurname}"> ${surnameAuthor} </a>
+    </div>
+    <div class="content">
+        <h1 class="title"> ${props.metadata.title.fieldValue} </h1>
+        <div class="author"> ${props.metadata.author.fieldValue}</div>
+        <hr />
+        <div class="meta">
+            <span class="meta-description"> Первая публикация: </span>
+            <span class="meta-value"> ${props.metadata.date.fieldValue}</span><br/>
+            <span class="meta-description"> Источник: </span> <span class="meta-value"> ${props.metadata.origin.fieldValue} </span>
+        </div>
+        <hr/>
+        ${props.editor.contentRendered}
+    </div>
+</body>
+</html>`;
 
     // create file title
     const fileTitle = cyrillicToTranslit()
