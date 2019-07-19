@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import { jsAnchorNavigation } from "../helpers";
+import { updateHtml } from "../../store/actions/htmlActions";
 
 const style = {
   translation: {
@@ -11,10 +12,18 @@ const style = {
 };
 
 class Preview extends Component {
+  constructor(props) {
+    super(props);
+    this.renderedContent = "";
+  }
+
   componentDidMount() {
     jsAnchorNavigation("#preview");
   }
 
+  /**
+   * Duplicate this Part into the render Section of
+   */
   render() {
     const {
       author,
@@ -42,8 +51,14 @@ class Preview extends Component {
         translated
       );
 
-    return (
+    this.renderedContent = (
       <Container className="preview" id="preview">
+        <div className="nav-links">
+          <a href="../../../../../../index.htm">МИА</a>&#160;&#160;&gt;&#160;
+          <a href="../../../../../index.htm">Русский раздел</a>
+          &#160;&#160;&gt;&#160;
+          <a href="../../../index.html"> Макаренко </a>
+        </div>
         <div className="meta">
           {author && <h2>{author.fieldValue}</h2>}
           {title && <h3>{title.fieldValue}</h3>}
@@ -83,6 +98,8 @@ class Preview extends Component {
         <div dangerouslySetInnerHTML={{ __html: this.props.contentRendered }} />
       </Container>
     );
+
+    return this.renderedContent;
   }
 }
 
@@ -90,8 +107,20 @@ const mapStateToProps = state => {
   return {
     contentRendered: state.editor.contentRendered,
     meta: state.meta,
-    date: state.date
+    date: state.date,
+    html: state.html
   };
 };
 
-export default connect(mapStateToProps)(Preview);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateHtml: state => {
+      dispatch(updateHtml(state));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Preview);
