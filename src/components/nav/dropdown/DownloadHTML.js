@@ -29,16 +29,17 @@ const DownloadHTML = props => {
 <head>
     <title> ${props.metadata.author.fieldValue} ${props.metadata.title.fieldValue}</title>
     <meta name="keywords" content="${props.metadata.keywords.fieldValue}" />
-    <link rel="stylesheet" href="http://pm-pu.ru/marx/style_for_marxists.css">
+    <link rel="stylesheet" href="../../../../style.css">
+    <meta charset="utf-8">
     <!-- metaJSON
     ${jsonData}
     metaJSON -->
 </head>
 <body>
     <div class="nav-links">
-        <a href="https://marxists.org/">МИА</a>&#160;&#160;&gt;&#160;
-        <a href="https://marxists.org/russkij/">Русский раздел</a>&#160;&#160;&gt;&#160;
-        <a href="https://marxists.org/russkij/archive/${translitSurname}"> ${surnameAuthor} </a>
+        <a href="../../../../../../index.htm">МИА</a>&#160;&#160;&gt;&#160;
+        <a href="../../../../../index.htm">Русский раздел</a>&#160;&#160;&gt;&#160;
+        <a href="../../../index.html"> ${surnameAuthor} </a>
     </div>
     <div class="content">
         <h1 class="title"> ${props.metadata.title.fieldValue} </h1>
