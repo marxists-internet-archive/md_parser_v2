@@ -27,7 +27,7 @@ const DownloadHTML = props => {
     let html = `<!doctype html>
 <html>
 <head>
-    <title> ${props.metadata.author.fieldValue} ${props.metadata.title.fieldValue}</title>
+    <title> ${props.metadata.author.fieldValue} : ${props.metadata.title.fieldValue}</title>
     <meta name="keywords" content="${props.metadata.keywords.fieldValue}" />
     <link rel="stylesheet" href="../../../../style.css">
     <meta charset="utf-8">
