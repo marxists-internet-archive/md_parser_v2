@@ -60,7 +60,7 @@ const initState = {
     fieldLabel: "type",
     fieldName: "Тип материала*",
     fieldValue: "article",
-    types: ["...", "article", "book", "speech"],
+    types: ["...", "статья", "книга", "выступление"],
     isRequired: "required"
   },
   /** component only - data only needod for diplay setting */
