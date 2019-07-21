@@ -31,13 +31,11 @@ export function renderPreview() {
   } = this.props.meta;
   const { alertResult } = this.props.date;
 
-  let translated = translation.fieldValue ? (
-    translation.fieldValue
-  ) : null;
+  let translated = translation.fieldValue ? translation.fieldValue : null;
 
   translated =
     translation.fieldValue && translationLink.fieldValue ? (
-        <a href={translationLink.fieldValue}>{translation.fieldValue}</a>
+      <a href={translationLink.fieldValue}>{translation.fieldValue}</a>
     ) : (
       translated
     );
@@ -49,7 +47,7 @@ export function renderPreview() {
           <a href="../../../../../../index.htm">МИА</a>&#160;&#160;&gt;&#160;
           <a href="../../../../../index.htm">Русский раздел</a>
           &#160;&#160;&gt;&#160;
-          <a href="../../../index.html"> {author.fieldValue.split(' ')[0]} </a>
+          <a href="../../../index.html"> {author.fieldValue.split(" ")[0]} </a>
         </div>
         <div className="meta">
           {title && <h1>{title.fieldValue}</h1>}
@@ -57,29 +55,29 @@ export function renderPreview() {
 
           <div className="meta-box">
             {date && (
-              <div className = "meta-box_description">Дата первого опубликования : {alertResult && alertResult}</div>
+              <div className="meta-box_description">
+                Дата первого опубликования : {alertResult && alertResult}
+              </div>
             )}
             {origin && (
-              <div className = "meta-box_description">
+              <div className="meta-box_description">
                 <a href={source.fieldValue}>
                   {origin.fieldName} {origin.fieldValue}
                 </a>
               </div>
             )}
             {keywords.fieldValue && (
-              <div className = "meta-box_description__theme_keywords">
-                  {keywords.fieldValue.split(", ").map(elem => `#${elem} `)}
+              <div className="meta-box_description__theme_keywords">
+                {keywords.fieldValue.split(", ").map(elem => `#${elem} `)}
               </div>
             )}
             {type && type.fieldValue !== "..." && (
-              <div className = "meta-box_description">
+              <div className="meta-box_description">
                 {type.fieldName}: {type.fieldValue}
               </div>
             )}
             {translated && (
-              <div className = "meta-box_description">
-                Перевод: {translated}
-              </div>
+              <div className="meta-box_description">Перевод: {translated}</div>
             )}
           </div>
         </div>
