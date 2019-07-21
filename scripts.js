@@ -7,9 +7,9 @@ const path = require("path");
  */
 function walkSync(dir, filelist = []) {
   fs.readdirSync(dir).forEach(file => {
-    filelist = fs.statSync(path.join(dir, file)).isDirectory()
-      ? walkSync(path.join(dir, file), filelist)
-      : filelist.concat(path.join(dir, file));
+    filelist = fs.statSync(path.posix.join(dir, file)).isDirectory()
+      ? walkSync(path.posix.join(dir, file), filelist)
+      : filelist.concat(path.posix.join(dir, file));
   });
   return filelist;
 }

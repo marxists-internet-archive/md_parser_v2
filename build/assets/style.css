@@ -11,7 +11,6 @@
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     padding: 1.5em;
-    padding-top: 0em;
     -webkit-box-shadow: 0px 0px 5px 0px #c7c7c7;
     -moz-box-shadow: 0px 0px 5px 0px #c7c7c7;
     box-shadow: 0px 0px 5px 0px #c7c7c7;
@@ -43,9 +42,6 @@
       .document .preview .meta .meta-box a:hover {
         color: black;
         border-bottom: 1px solid black; }
-      .document .preview .meta .meta-box h4 {
-        margin-bottom: 0.8em;
-        line-height: 1.5em; }
   .document .preview h2 {
     font-weight: bold;
     padding-top: 0.3em;
@@ -74,15 +70,17 @@
     padding-top: 1.5em; }
     .document .preview .meta h1 {
       font-size: 1.4em; }
-    .document .preview .meta h2 {
+    .document .preview .meta .author-name {
       font-size: 1.3em; }
-    .document .preview .meta h3 {
-      font-size: 1.2em;
-      color: brown; }
-    .document .preview .meta h4 {
+    .document .preview .meta .meta-box_description {
+      font-size: 1em; }
+    .document .preview .meta .meta-box_description__theme_keywords {
       font-size: 1em; }
     .document .preview .meta h5 {
-      font-size: 1em; } }
+      font-size: 1em; }
+    .document .preview .meta .meta-box {
+      margin-top: 1em;
+      padding-top: .5em; } }
 
 .document .container {
   padding-right: 15px;
