@@ -18,6 +18,7 @@
     "markdown-it": "^8.4.2",
     "markdown-it-footnote": "^3.0.1",
     "moment": "^2.24.0",
+    "ncp": "^2.0.0",
     "node-sass": "^4.12.0",
     "popper.js": "^1.15.0",
     "pretty": "^2.0.0",
@@ -37,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "design:update": "gulp transpile && gulp writeToJs"
+    "design:update": "gulp transpile && gulp writeToJs && gulp copyFonts"
   },
   "eslintConfig": {
     "extends": "react-app"

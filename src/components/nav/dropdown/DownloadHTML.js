@@ -1,162 +1,143 @@
 import React, { Component } from "react";
 import ReactDomServer from "react-dom/server";
-import { Dropdown, Container } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
 import handlebars from "handlebars/dist/handlebars";
-import template from "./assets/template";
 import pretty from "pretty";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import pageStyles from "./assets/style";
+import { fontPaths } from "./fontPaths";
+import { renderPreview } from "../../preview/renderPreview";
+import {
+  prepareMdData,
+  checkEmptyFields,
+  showEmptyRequiredFieldsModal
+} from "./sharedFunctions";
 
 const cyrillicToTranslit = require("cyrillic-to-translit-js");
 const beautifyJS = require("js-beautify");
-
-const style = {
-  translation: {
-    display: "inline"
-  }
-};
 
 class DownloadHTML extends Component {
   constructor(props) {
     super(props);
     this.renderedContent = "";
-    this.template = template;
+    this.renderPreview = renderPreview.bind(this);
+    this.prepareMdData = prepareMdData.bind(this);
+    this.state = {
+      visible: false,
+      requiredFields: []
+    };
   }
 
-  renderPreview = () => {
-    /**
-     * set content to render
-     */
-    const {
-      author,
-      title,
-      origin,
-      source,
-      date,
-      keywords,
-      type,
-      translation,
-      translationLink
-    } = this.props.meta;
-    const { alertResult } = this.props.date;
-
-    let translated = translation.fieldValue ? (
-      <h4 style={style.translation}>{translation.fieldValue}</h4>
-    ) : null;
-
-    translated =
-      translation.fieldValue && translationLink.fieldValue ? (
-        <h4 style={style.translation}>
-          <a href={translationLink.fieldValue}>{translation.fieldValue}</a>
-        </h4>
-      ) : (
-        translated
-      );
-
-    this.renderedContent = (
-      <div className="document">
-        <Container className="preview" id="preview">
-          <div className="nav-links">
-            <a href="../../../../../../index.htm">МИА</a>&#160;&#160;&gt;&#160;
-            <a href="../../../../../index.htm">Русский раздел</a>
-            &#160;&#160;&gt;&#160;
-            <a href="../../../index.html"> Макаренко </a>
-          </div>
-          <div className="meta">
-            {author && <h2>{author.fieldValue}</h2>}
-            {title && <h3>{title.fieldValue}</h3>}
-
-            <div className="meta-box">
-              {date && (
-                <h4>
-                  Дата первого опубликования : {alertResult && alertResult}
-                </h4>
-              )}
-              {origin && (
-                <h4>
-                  <a href={source.fieldValue}>
-                    {origin.fieldName} {origin.fieldValue}
-                  </a>
-                </h4>
-              )}
-              {keywords.fieldValue && (
-                <h4>
-                  <i>
-                    {keywords.fieldValue.split(", ").map(elem => `#${elem} `)}
-                  </i>
-                </h4>
-              )}
-              {type && type.fieldValue !== "..." && (
-                <h4>
-                  {type.fieldName}: {type.fieldValue}
-                </h4>
-              )}
-              {translated && (
-                <span>
-                  <h4 style={style.translation}>Перевод: </h4>
-                  {translated}
-                </span>
-              )}
-            </div>
-          </div>
-          <br />
-          <div
-            dangerouslySetInnerHTML={{ __html: this.props.contentRendered }}
-          />
-        </Container>
-      </div>
-    );
+  setRequiredFields = fields => {
+    this.setState({
+      requiredFields: fields
+    });
   };
 
-  downloadHTML = () => {
-    this.renderPreview();
+  setVisible = bool => {
+    this.setState({
+      visible: bool
+    });
+  };
 
+  downloadHTML = async () => {
+    let errors = checkEmptyFields(this.props.meta);
+    if (errors.length) {
+      this.setVisible(true);
+      this.setRequiredFields(errors);
+      return;
+    }
+
+    this.renderPreview();
     let jsonData = {};
 
-    // map all Metadata to key value pairs & create JSON object
+    /* map all Metadata to key value pairs & create JSON object */
     Object.entries(this.props.meta).forEach(elem => {
       if (elem[1].fieldValue && elem[1].fieldValue !== "...") {
         jsonData[[elem[1].fieldLabel]] = elem[1].fieldValue;
       }
     });
 
+    const mdFileAsString = this.prepareMdData(jsonData, this.props);
+
+    /* Prepare data that will be injected into the handlebars template */
     let context = {};
     context["jsonData"] = jsonData;
     context["metaJson"] = beautifyJS(JSON.stringify(jsonData));
     context["renderedContent"] = ReactDomServer.renderToStaticMarkup(
+      // renderedContent is declared in renderPreview();
       this.renderedContent
     );
 
     /* compile template */
-    let compiledTemplate = handlebars.compile(template);
+    let compiledTemplate = await this.fetchTemplate().then(template => {
+      return handlebars.compile(template);
+    });
+
     /* insert content into the template */
     let result = pretty(compiledTemplate(context));
 
-    // create file title
-    const fileTitle = cyrillicToTranslit()
-      .transform(this.props.meta.title.fieldValue, "_")
-      .toLowerCase();
-    // create folder title
+    /* create folder title */
     const folderTitle = cyrillicToTranslit()
-      .transform(this.props.meta.author.fieldValue, "_")
-      .toLowerCase();
+      .transform(this.props.meta.title.fieldValue, "_")
+      .toLowerCase()
+      .replace("'", "");
+
+    /* fetch all font assets */
+    let promises = [];
+    fontPaths.forEach(path =>
+      promises.push(fetch(process.env.PUBLIC_URL + "/assets" + path))
+    );
 
     let zip = new JSZip();
-
     let folder = zip.folder(folderTitle);
-    folder.file("style.css", pageStyles);
-    folder.file(fileTitle + ".html", result);
 
+    await Promise.all(promises).then(results => {
+      results.forEach(file => {
+        // cleanup path for saving
+        let url = file.url.match(/\/assets.*/)[0];
+        folder.file("." + url, file.blob());
+      });
+    });
+
+    /* fetch styles */
+    await this.fetchFile(process.env.PUBLIC_URL + "/assets/style.css").then(
+      file => folder.file("style.css", file)
+    );
+
+    fetch(process.env.PUBLIC_URL + "/assets/style.css");
+
+    folder.file("index.html", result);
+    folder.file(folderTitle + ".md", mdFileAsString);
     zip.generateAsync({ type: "blob" }).then(function(content) {
-      saveAs(content, fileTitle + ".zip");
+      saveAs(content, folderTitle + ".zip");
     });
   };
 
+  fetchTemplate = async () => {
+    let res = await fetch(process.env.PUBLIC_URL + "/assets/template.html");
+    let template = await res.text();
+    return template;
+  };
+
+  fetchFile = async url => {
+    let res = await fetch(url);
+    let file = await res.blob();
+    return file;
+  };
+
   render() {
+    const modal = showEmptyRequiredFieldsModal(
+      this.state.requiredFields,
+      this.setVisible,
+      this.state.visible
+    );
     return (
-      <Dropdown.Item onClick={this.downloadHTML}>Скачать HTML</Dropdown.Item>
+      <span>
+        <Dropdown.Item onClick={this.downloadHTML}>Скачать HTML</Dropdown.Item>
+        {modal}
+      </span>
     );
   }
 }
@@ -166,7 +147,8 @@ const mapStateToProps = state => {
     contentRendered: state.editor.contentRendered,
     meta: state.meta,
     date: state.date,
-    html: state.html
+    html: state.html,
+    editor: state.editor
   };
 };
 

@@ -58,9 +58,10 @@ const initState = {
   },
   type: {
     fieldLabel: "type",
-    fieldName: "Тип материала",
+    fieldName: "Тип материала*",
     fieldValue: "article",
-    types: ["...", "article", "book", "speech"]
+    types: ["...", "article", "book", "speech"],
+    isRequired: "required"
   },
   /** component only - data only needod for diplay setting */
   dateAlert: {

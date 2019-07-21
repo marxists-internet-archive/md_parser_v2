@@ -10,14 +10,15 @@ class Select extends Component {
   }
 
   onChange = e => {
-    const { fieldLabel, fieldName, types } = this.props.type;
+    const { fieldLabel, fieldName, types, isRequired } = this.props.type;
     const selected = e.target.value;
 
     this.props.updateMeta({
       fieldLabel,
       fieldName,
       fieldValue: selected,
-      types
+      types,
+      isRequired
     });
   };
 

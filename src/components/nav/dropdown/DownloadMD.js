@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
 import { saveAs } from "file-saver";
-const beautifyJS = require("js-beautify");
+import {
+  prepareMdData,
+  checkEmptyFields,
+  showEmptyRequiredFieldsModal
+} from "./sharedFunctions";
 const cyrillicToTranslit = require("cyrillic-to-translit-js");
 
 const DownloadMD = props => {
+  const [visible, setVisible] = useState(false);
+  const [requiredFields, setRequiredFields] = useState([]);
+
   const downloadMD = () => {
+    const errors = checkEmptyFields(props.metadata);
+    if (errors.length) {
+      setVisible(true);
+      setRequiredFields(errors);
+      return;
+    }
+
     let jsonData = {};
     // map all Metadata to key value pairs & create JSON object
     Object.entries(props.metadata).forEach(elem => {
@@ -16,23 +30,33 @@ const DownloadMD = props => {
     });
 
     // concatenate json with content
-    jsonData = beautifyJS(JSON.stringify(jsonData));
-    jsonData = "§§JSONBLOCK_START§§\n" + jsonData + "\n§§JSONBLOCK_END§§\n\n";
-    jsonData += props.editor.content;
+    const mdFileAsString = prepareMdData(jsonData, props);
 
     // create file title
     const fileTitle = cyrillicToTranslit()
       .transform(props.metadata.title.fieldValue, "_")
-      .toLowerCase();
+      .toLowerCase()
+      .replace("'", "");
 
     //create file
-    const file = new File([jsonData], fileTitle + ".md", {
+    const file = new File([mdFileAsString], fileTitle + ".md", {
       type: "text/plain;charset=utf-8"
     });
     saveAs(file);
   };
 
-  return <Dropdown.Item onClick={downloadMD}>Скачать MD</Dropdown.Item>;
+  const onClick = () => {
+    setVisible(false);
+  };
+
+  const modal = showEmptyRequiredFieldsModal(requiredFields, onClick, visible);
+
+  return (
+    <span>
+      <Dropdown.Item onClick={downloadMD}>Скачать MD</Dropdown.Item>
+      {modal}
+    </span>
+  );
 };
 
 const mapStateToProps = state => {
