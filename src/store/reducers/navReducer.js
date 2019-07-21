@@ -1,5 +1,5 @@
 const initState = {
-  projectTitle: "MD_Editor",
+  projectTitle: "MIA LAB",
   view: [2, 3]
 };
 

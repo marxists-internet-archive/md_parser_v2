@@ -1,6 +1,6 @@
 import "./Nav.scss";
 import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
 import { updateStore } from "../../store/actions/navActions";
@@ -26,12 +26,26 @@ class Navigation extends Component {
     const editorToolbar =
       this.props.location.pathname === "/editor" ? <EditorToolbar /> : null;
 
+    const placement = "bottom";
     return (
       <Navbar className="bg-light justify-content-between mt-2 navPanel">
-        <div
-          className="icon-edit"
-          style={{ width: "35px", height: "35px", marginRight: "10px" }}
-        />
+        <OverlayTrigger
+          key={placement}
+          placement={placement}
+          overlay={
+            <Tooltip id={`tooltip-${placement}`}>
+              Contribute on <strong>Github</strong>.
+            </Tooltip>
+          }
+        >
+          <a href="https://github.com/marxists-internet-archive/md_parser_v2">
+            <div
+              className="icon-edit"
+              style={{ width: "35px", height: "35px", marginRight: "10px" }}
+            />
+          </a>
+        </OverlayTrigger>
+
         <Navbar.Brand
           className="projectTitle d-none d-xs-none d-sm-block"
           onClick={this.onClick}
@@ -42,11 +56,11 @@ class Navigation extends Component {
           <LinkContainer to="/editor">
             <Nav.Item>Editor</Nav.Item>
           </LinkContainer>
-          <LinkContainer to="/preview">
-            <Nav.Item>Preview</Nav.Item>
-          </LinkContainer>
           <LinkContainer to="/meta">
             <Nav.Item>Meta</Nav.Item>
+          </LinkContainer>
+          <LinkContainer to="/preview">
+            <Nav.Item>Preview</Nav.Item>
           </LinkContainer>
           <DropdownToolbar />
 
