@@ -32,14 +32,12 @@ export function renderPreview() {
   const { alertResult } = this.props.date;
 
   let translated = translation.fieldValue ? (
-    <h4 style={style.translation}>{translation.fieldValue}</h4>
+    translation.fieldValue
   ) : null;
 
   translated =
     translation.fieldValue && translationLink.fieldValue ? (
-      <h4 style={style.translation}>
         <a href={translationLink.fieldValue}>{translation.fieldValue}</a>
-      </h4>
     ) : (
       translated
     );
@@ -51,44 +49,40 @@ export function renderPreview() {
           <a href="../../../../../../index.htm">МИА</a>&#160;&#160;&gt;&#160;
           <a href="../../../../../index.htm">Русский раздел</a>
           &#160;&#160;&gt;&#160;
-          <a href="../../../index.html"> Макаренко </a>
+          <a href="../../../index.html"> {author.fieldValue.split(' ')[0]} </a>
         </div>
         <div className="meta">
-          {author && <h2>{author.fieldValue}</h2>}
-          {title && <h3>{title.fieldValue}</h3>}
+          {title && <h1>{title.fieldValue}</h1>}
+          {author && <div className="author-name">{author.fieldValue}</div>}
 
           <div className="meta-box">
             {date && (
-              <h4>Дата первого опубликования : {alertResult && alertResult}</h4>
+              <div className = "meta-box_description">Дата первого опубликования : {alertResult && alertResult}</div>
             )}
             {origin && (
-              <h4>
+              <div className = "meta-box_description">
                 <a href={source.fieldValue}>
                   {origin.fieldName} {origin.fieldValue}
                 </a>
-              </h4>
+              </div>
             )}
             {keywords.fieldValue && (
-              <h4>
-                <i>
+              <div className = "meta-box_description__theme_keywords">
                   {keywords.fieldValue.split(", ").map(elem => `#${elem} `)}
-                </i>
-              </h4>
+              </div>
             )}
             {type && type.fieldValue !== "..." && (
-              <h4>
+              <div className = "meta-box_description">
                 {type.fieldName}: {type.fieldValue}
-              </h4>
+              </div>
             )}
             {translated && (
-              <span>
-                <h4 style={style.translation}>Перевод: </h4>
-                {translated}
-              </span>
+              <div className = "meta-box_description">
+                Перевод: {translated}
+              </div>
             )}
           </div>
         </div>
-        <br />
         <div dangerouslySetInnerHTML={{ __html: this.props.contentRendered }} />
       </Container>
     </div>

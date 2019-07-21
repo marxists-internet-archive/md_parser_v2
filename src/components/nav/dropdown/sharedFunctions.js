@@ -30,7 +30,7 @@ export function showEmptyRequiredFieldsModal(requiredFields, onClick, visible) {
       </Modal.Header>
       <Modal.Body>
         <Alert variant={"danger"}>
-          Поля которые нехватает заполнить:
+          Поля которые требуется заполнить:
           <ul>
             {requiredFields.map((field, idx) => (
               <li key={idx}>{field}</li>

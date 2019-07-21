@@ -9,6 +9,7 @@
     -ms-hyphens: auto; }
   .document .preview .meta {
     margin-top: 1.5em;
+    margin-bottom: 1.5em;
     padding: 1.5em;
     padding-top: 0em;
     -webkit-box-shadow: 0px 0px 5px 0px #c7c7c7;
@@ -16,13 +17,19 @@
     box-shadow: 0px 0px 5px 0px #c7c7c7;
     border-radius: 0.3em;
     font-family: "Noto Serif"; }
-    .document .preview .meta h2 {
-      font-size: 3em; }
-    .document .preview .meta h3 {
-      font-size: 2.5em;
-      color: brown; }
-    .document .preview .meta h4 {
-      font-size: 1.3em; }
+    .document .preview .meta h1 {
+      font-size: 3em;
+      color: brown;
+      font-weight: bold; }
+    .document .preview .meta .author-name {
+      font-size: 2.5em; }
+    .document .preview .meta .meta-box_description {
+      font-size: 1.3em;
+      margin-bottom: 1em; }
+    .document .preview .meta .meta-box_description__theme_keywords {
+      font-size: 1.3em;
+      font-style: italic;
+      margin-bottom: 1em; }
     .document .preview .meta .meta-box {
       margin-top: 2em;
       padding-top: 1em;
