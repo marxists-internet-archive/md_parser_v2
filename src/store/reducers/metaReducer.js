@@ -59,7 +59,7 @@ const initState = {
   type: {
     fieldLabel: "type",
     fieldName: "Тип материала*",
-    fieldValue: "article",
+    fieldValue: "статья",
     types: ["...", "статья", "книга", "выступление"],
     isRequired: "required"
   },
