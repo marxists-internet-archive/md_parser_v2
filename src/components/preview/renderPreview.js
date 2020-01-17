@@ -1,11 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 
-const style = {
-  translation: {
-    display: "inline"
-  }
-};
 /**
  * SINGLE SOURCE OF TRUE for preview/Preview.js
  * and dropdown/DownloadHTML.js components;
@@ -56,10 +51,11 @@ export function renderPreview() {
           <div className="meta-box">
             {date && (
               <div className="meta-box_description">
-                Дата первого опубликования : {alertResult && alertResult}
+                {alertResult && "Дата первого опубликования: "}
+                {alertResult && alertResult}
               </div>
             )}
-            {origin && (
+            {origin.fieldValue && (
               <div className="meta-box_description">
                 <a href={source.fieldValue}>
                   {origin.fieldName} {origin.fieldValue}

@@ -102,9 +102,9 @@ class DownloadHTML extends Component {
     });
 
     /* fetch styles */
-    await this.fetchFile(process.env.PUBLIC_URL + "/assets/style.css").then(
-      file => folder.file("style.css", file)
-    );
+    await this.fetchFile(
+      process.env.PUBLIC_URL + "/assets/style.css"
+    ).then(file => folder.file("assets/style.css", file));
 
     fetch(process.env.PUBLIC_URL + "/assets/style.css");
 
