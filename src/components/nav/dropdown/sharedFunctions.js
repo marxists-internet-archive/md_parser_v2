@@ -24,7 +24,7 @@ export function checkEmptyFields(metadata) {
 
 export function showEmptyRequiredFieldsModal(requiredFields, onClick, visible) {
   return (
-    <Modal show={visible} onHide={onClick}>
+    <Modal show={visible} onHide={() => onClick(false)}>
       <Modal.Header closeButton>
         <Modal.Title>Не все обязательные поля заполненны!</Modal.Title>
       </Modal.Header>
@@ -39,7 +39,7 @@ export function showEmptyRequiredFieldsModal(requiredFields, onClick, visible) {
         </Alert>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onClick}>
+        <Button variant="secondary" onClick={() => onClick(false)}>
           Ok
         </Button>
       </Modal.Footer>
