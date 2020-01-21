@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{ jsonData.author }} : {{ jsonData.title }}</title>
-    <meta name="keywords" content="{{ jsonData.keywords }}" />
-    <link rel="stylesheet" href="../../../../src/style.css">
-    <!-- fallback for local testing -->
-    <link rel="stylesheet" href="./assets/style.css">
-    <script type="text/javascript" src="../../../../src/script.js"></script>
 
-    <!-- metaJSON
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{{ jsonData.author }} : {{ jsonData.title }}</title>
+  <meta name="keywords" content="{{ jsonData.keywords }}" />
+  <link rel="stylesheet" href="../../../../src/style.css">
+  <link rel="stylesheet" href="../../../../src/js_style.css">
+  <script type="text/javascript" src="../../../../src/script.js"></script>
+  
+  <!-- fallback for local testing -->
+  <link rel="stylesheet" href="./assets/style.css">
+
+  <!-- metaJSON
     {{{ metaJson }}}
     metaJSON -->
-  </head>
-  <body>
-    {{{ renderedContent }}}
-  </body>
+</head>
+
+<body>
+  <div class="header" id="header"></div>
+  {{{ renderedContent }}}
+  <div class="footer"></div>
+</body>
+
 </html>
