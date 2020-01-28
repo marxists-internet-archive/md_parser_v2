@@ -32,8 +32,8 @@ export function renderPreview() {
     translation.fieldValue && translationLink.fieldValue ? (
       <a href={translationLink.fieldValue}>{translation.fieldValue}</a>
     ) : (
-      translated
-    );
+        translated
+      );
 
   this.renderedContent = (
     <div className="document">
@@ -58,7 +58,7 @@ export function renderPreview() {
             {origin.fieldValue && (
               <div className="meta-box_description">
                 <a href={source.fieldValue}>
-                  {origin.fieldName} {origin.fieldValue}
+                  {origin.fieldName.replace('*', '')} {origin.fieldValue}
                 </a>
               </div>
             )}
@@ -69,7 +69,7 @@ export function renderPreview() {
             )}
             {type && type.fieldValue !== "..." && (
               <div className="meta-box_description">
-                {type.fieldName}: {type.fieldValue}
+                {type.fieldName.replace('*', '')}: {type.fieldValue}
               </div>
             )}
             {translated && (
