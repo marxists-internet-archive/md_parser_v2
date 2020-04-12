@@ -43,10 +43,8 @@ export function renderPreview() {
           <a href="../../../../../../index.htm">МИА</a>&#160;&#160;&gt;&#160;
           <a href="../../../../../index.htm">Русский раздел</a>
           &#160;&#160;&gt;&#160;
-          {/* 
-            ToDo: Author generation strategy? Мб в переменных в начале прописать?
-            Весь metaJson moжно в переменной прописать. Будет очень удобно для других скриптов.
-           */}
+          {/* ToDo: Author generation strategy? Мб в переменных в начале прописать?
+            Весь metaJson moжно в переменной прописать. Будет очень удобно для других скриптов. */}
           <a href="../../../index.html"> {author.fieldValue.split(" ")[0]} </a>
         </div>
         <div className="meta">
