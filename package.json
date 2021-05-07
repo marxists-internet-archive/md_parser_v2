@@ -12,7 +12,7 @@
     "grunt-grunticon": "^2.3.2",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.0.2",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.7.7",
     "jquery": "^3.4.1",
     "js-beautify": "^1.10.0",
     "jszip": "^3.2.2",
