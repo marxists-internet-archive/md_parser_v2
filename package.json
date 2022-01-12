@@ -16,7 +16,7 @@
     "jquery": "^3.4.1",
     "js-beautify": "^1.10.0",
     "jszip": "^3.2.2",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "markdown-it-footnote": "^3.0.1",
     "moment": "^2.24.0",
     "ncp": "^2.0.0",
